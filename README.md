@@ -1,6 +1,6 @@
 <p align="center">
     <a href="https://github.com/nativium/nativium" target="_blank" rel="noopener noreferrer">
-        <img width="180" src="extras/images/logo.png" alt="Nativium Logo">
+        <img width="180" src="extras/images/logo.png?r=1" alt="Nativium Logo">
     </a>
     <br>
     <br>
