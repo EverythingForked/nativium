@@ -32,7 +32,7 @@ def run(params):
                     build_type,
                     arch["group"],
                     arch["conan_arch"],
-                    const.DIR_NAME_BUILD_CONAN,
+                    "conan",
                 )
 
                 f.recreate_dir(build_dir)

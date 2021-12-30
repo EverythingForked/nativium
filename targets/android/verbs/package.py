@@ -143,7 +143,7 @@ def run(params):
                     compiled_arch_dir = os.path.join(
                         build_dir,
                         arch["conan_arch"],
-                        const.DIR_NAME_BUILD_TARGET,
+                        "target",
                         "lib",
                     )
 

@@ -36,7 +36,7 @@ def run(params):
                     target_name,
                     build_type,
                     arch["conan_arch"],
-                    const.DIR_NAME_BUILD_TARGET,
+                    "target",
                 )
 
                 clean_build_dir = True
@@ -72,7 +72,7 @@ def run(params):
                         target_name,
                         build_type,
                         arch["conan_arch"],
-                        const.DIR_NAME_BUILD_TARGET,
+                        "target",
                     ),
                     "--install-folder",
                     os.path.join(
@@ -81,7 +81,7 @@ def run(params):
                         target_name,
                         build_type,
                         arch["conan_arch"],
-                        const.DIR_NAME_BUILD_CONAN,
+                        "conan",
                     ),
                 ]
 
@@ -94,7 +94,7 @@ def run(params):
                     target_name,
                     build_type,
                     arch["conan_arch"],
-                    const.DIR_NAME_BUILD_CONAN,
+                    "conan",
                     "bin",
                 )
 

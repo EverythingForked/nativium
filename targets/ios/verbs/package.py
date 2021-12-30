@@ -62,7 +62,7 @@ def run(params):
     target_scripts_dir = os.path.join(
         "targets",
         target_name,
-        const.DIR_NAME_SUPPORT,
+        "support",
         "scripts",
     )
 
@@ -82,7 +82,7 @@ def run(params):
     pod_file_path = os.path.join(
         "targets",
         target_name,
-        const.DIR_NAME_SUPPORT,
+        "support",
         "cocoapods",
         "{0}.podspec".format(target_config["project_name"]),
     )
@@ -143,7 +143,7 @@ def generate_framework(proj_path, target_name, target_config, archs, build_types
                     build_type,
                     archs[0]["group"],
                     archs[0]["conan_arch"],
-                    const.DIR_NAME_BUILD_TARGET,
+                    "target",
                     "lib",
                     "{0}.framework".format(target_config["project_name"]),
                 )
@@ -199,7 +199,7 @@ def generate_framework(proj_path, target_name, target_config, archs, build_types
                                 build_type,
                                 arch["group"],
                                 arch["conan_arch"],
-                                const.DIR_NAME_BUILD_TARGET,
+                                "target",
                                 "lib",
                                 "{0}.framework".format(target_config["project_name"]),
                                 target_config["project_name"],
@@ -309,7 +309,7 @@ def generate_xcframework(proj_path, target_name, target_config, archs, build_typ
                         build_type,
                         base_framework_arch["group"],
                         base_framework_arch["conan_arch"],
-                        const.DIR_NAME_BUILD_TARGET,
+                        "target",
                         "lib",
                         "{0}.framework".format(target_config["project_name"]),
                     )
@@ -344,7 +344,7 @@ def generate_xcframework(proj_path, target_name, target_config, archs, build_typ
                                     build_type,
                                     arch["group"],
                                     arch["conan_arch"],
-                                    const.DIR_NAME_BUILD_TARGET,
+                                    "target",
                                     "lib",
                                     "{0}.framework".format(
                                         target_config["project_name"]

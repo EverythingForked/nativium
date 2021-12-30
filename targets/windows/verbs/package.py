@@ -42,7 +42,7 @@ def run(params):
                     target_name,
                     build_type,
                     arch["conan_arch"],
-                    const.DIR_NAME_BUILD_TARGET,
+                    "target",
                     "bin",
                 )
 

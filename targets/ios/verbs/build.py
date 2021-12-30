@@ -38,7 +38,7 @@ def run(params):
                     build_type,
                     arch["group"],
                     arch["conan_arch"],
-                    const.DIR_NAME_BUILD_TARGET,
+                    "target",
                 )
 
                 clean_build_dir = True
@@ -75,7 +75,7 @@ def run(params):
                         build_type,
                         arch["group"],
                         arch["conan_arch"],
-                        const.DIR_NAME_BUILD_TARGET,
+                        "target",
                     ),
                     "--install-folder",
                     os.path.join(
@@ -85,7 +85,7 @@ def run(params):
                         build_type,
                         arch["group"],
                         arch["conan_arch"],
-                        const.DIR_NAME_BUILD_CONAN,
+                        "conan",
                     ),
                 ]
 
@@ -99,7 +99,7 @@ def run(params):
                     build_type,
                     arch["group"],
                     arch["conan_arch"],
-                    const.DIR_NAME_BUILD_TARGET,
+                    "target",
                     "lib",
                     "{0}.framework".format(target_config["project_name"]),
                     "Info.plist",
@@ -112,7 +112,7 @@ def run(params):
                     build_type,
                     arch["group"],
                     arch["conan_arch"],
-                    const.DIR_NAME_BUILD_TARGET,
+                    "target",
                     "lib",
                     "{0}.framework".format(target_config["project_name"]),
                     "Versions",
@@ -163,7 +163,7 @@ def run(params):
                     build_type,
                     arch["group"],
                     arch["conan_arch"],
-                    const.DIR_NAME_BUILD_TARGET,
+                    "target",
                     "lib",
                     "{0}.framework".format(target_config["project_name"]),
                     "Headers",
@@ -205,7 +205,7 @@ def run(params):
                     build_type,
                     arch["group"],
                     arch["conan_arch"],
-                    const.DIR_NAME_BUILD_TARGET,
+                    "target",
                     "lib",
                     "{0}.framework".format(target_config["project_name"]),
                     "Modules",
@@ -226,7 +226,7 @@ def run(params):
                     build_type,
                     arch["group"],
                     arch["conan_arch"],
-                    const.DIR_NAME_BUILD_TARGET,
+                    "target",
                     "lib",
                     "{0}.framework".format(target_config["project_name"]),
                     "Headers",
