@@ -64,7 +64,7 @@ def setup(params):
             if files:
                 conan_profile_dir = os.path.join(
                     f.home_dir(),
-                    "conan",
+                    ".conan",
                     "profiles",
                 )
 
