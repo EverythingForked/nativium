@@ -51,14 +51,8 @@ using namespace nativium::repository;
 using namespace nativium::systemservice;
 using namespace nativium::helper;
 
-#ifdef WIN32
-int WINAPI WinMain(HINSTANCE hInt, HINSTANCE hPrevInst, LPSTR lpCmdLine,
-                   int nCmdShow)
-{
-#else
 int main(int argc, char **argv)
 {
-#endif
     // platform services
     Logger::shared()->setPlatformService(std::make_shared<SimpleLoggerPlatformService>());
     Logger::shared()->setLevel(LoggerLevel::VERBOSE);
