@@ -84,7 +84,7 @@ class TargetConan(ConanFile):
         self.requires("sqlitecpp/3.1.1")
         self.requires("date/3.0.1")
         self.requires("nlohmann_json/3.9.1")
-        self.requires("poco/1.11.0")
+        self.requires("poco/1.11.1")
 
     def get_platform_arch(self):
         platform_arch = tools.to_apple_arch(
