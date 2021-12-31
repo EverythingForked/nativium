@@ -34,10 +34,6 @@
 #include "nativium/systemservice/CustomerSystemService.hpp"
 #include "nativium/systemservice/CustomerSystemServiceLoginData.hpp"
 
-#include "nativium/helper/AppRpc.hpp"
-
-#include "webview.h"
-
 #include <cstdlib>
 #include <iostream>
 #include <memory>
@@ -237,28 +233,6 @@ int main(int argc, char **argv)
         if (serverOnline)
         {
             httpServer->waitForTermination();
-        }
-    }
-
-    // rpc
-    {
-        // auto response = AppRpc::callWithText("test", "{\"data\":{\"pi\": 3.141, \"happy\": true, \"name\": \"Niels\", \"nothing\": null, \"answer\": [{\"everything\": 42}], \"list\": [1, 0, 2]}, \"object\": {\"currency\": \"USD\",\"value\": 42.99} }");
-        // Logger::d("RPC response: " + response);
-    }
-
-    // webview
-    {
-        if (true)
-        {
-            auto httpServer = HttpServer::shared();
-
-            auto w = webview::webview(false, initializationData.debug);
-            w.set_title("Minimal example");
-            w.set_size(800, 600, WEBVIEW_HINT_NONE);
-            w.navigate(httpServer->getSocketAddress());
-            w.run();
-
-            httpServer->stop();
         }
     }
 
