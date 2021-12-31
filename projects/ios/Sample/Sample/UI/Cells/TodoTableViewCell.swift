@@ -14,7 +14,7 @@ class TodoTableViewCell: UITableViewCell {
     var iconContainerView: UIView!
     var dataContainerView: UIView!
 
-    var todo: EZRDomainTodo!
+    var todo: NTVDomainTodo!
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -27,7 +27,7 @@ class TodoTableViewCell: UITableViewCell {
         super.init(coder: aDecoder)
     }
 
-    func bind(todo: EZRDomainTodo, hasSeparator: Bool) {
+    func bind(todo: NTVDomainTodo, hasSeparator: Bool) {
         self.todo = todo
 
         // data

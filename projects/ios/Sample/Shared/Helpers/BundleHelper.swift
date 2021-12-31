@@ -2,7 +2,7 @@ import Foundation
 
 class BundleHelper {
     static func extract() {
-        EZRLogger.i("[BundleHelper : extract] Starting bundle assets extraction...")
+        NTVLogger.i("[BundleHelper : extract] Starting bundle assets extraction...")
 
         let fm = FileManager.default
         let dirPaths = fm.urls(for: .documentDirectory, in: .userDomainMask)
@@ -11,11 +11,11 @@ class BundleHelper {
         let folderPath = Bundle.main.resourceURL!.appendingPathComponent("webapp").path
         let docsFolder = docsURL.appendingPathComponent("webapp").path
 
-        EZRFileHelper.removeDir(docsFolder)
+        NTVFileHelper.removeDir(docsFolder)
 
         copyFiles(pathFromBundle: folderPath, pathDestDocs: docsFolder)
 
-        EZRLogger.i("[BundleHelper : extract] Bundle assets extraction finished")
+        NTVLogger.i("[BundleHelper : extract] Bundle assets extraction finished")
     }
 
     static func copyFiles(pathFromBundle: String, pathDestDocs: String) {
@@ -29,7 +29,7 @@ class BundleHelper {
                 try? fm.copyItem(atPath: "\(pathFromBundle)/\(filename)", toPath: "\(pathDestDocs)/\(filename)")
             }
         } catch {
-            EZRLogger.e("[BundleHelper : copyFiles] Error: \(error.localizedDescription)")
+            NTVLogger.e("[BundleHelper : copyFiles] Error: \(error.localizedDescription)")
         }
     }
 }

@@ -1,10 +1,10 @@
-#import "EZRFileHelperPlatformServiceImpl.h"
+#import "NTVFileHelperPlatformServiceImpl.h"
 
-@interface EZRFileHelperPlatformServiceImpl ()
+@interface NTVFileHelperPlatformServiceImpl ()
 
 @end
 
-@implementation EZRFileHelperPlatformServiceImpl
+@implementation NTVFileHelperPlatformServiceImpl
 
 //------------------------------------------------------------------------------
 #pragma mark - Class Initializer
@@ -29,7 +29,7 @@
 }
 
 //------------------------------------------------------------------------------
-#pragma mark - EZRFileHelperPlatformServiceImpl
+#pragma mark - NTVFileHelperPlatformServiceImpl
 //------------------------------------------------------------------------------
 
 - (BOOL)createFile:(nonnull NSString *)path

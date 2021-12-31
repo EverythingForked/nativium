@@ -1,5 +1,3 @@
-"""Prepare target files and dependencies"""
-
 import os
 
 from pygemstones.io import file as f
@@ -7,8 +5,8 @@ from pygemstones.system import platform as p
 from pygemstones.system import runner as r
 from pygemstones.util import log as l
 
-from config import target_tests as config
 from core import const
+from targets.tests.config import target as config
 
 
 # -----------------------------------------------------------------------------
@@ -25,7 +23,7 @@ def run(params):
             for build_type in build_types:
                 l.i("Building for: {0}/{1}...".format(arch["conan_arch"], build_type))
 
-                # conan install
+                # prepare
                 build_dir = os.path.join(
                     proj_path,
                     "build",
@@ -43,24 +41,28 @@ def run(params):
                     "install",
                     os.path.join(
                         proj_path,
-                        "targets",
-                        target_name,
                         "conan",
                         "recipe",
                         const.FILE_NAME_CONANFILE_PY,
                     ),
                     "--profile",
-                    arch["conan_profile"],
+                    os.path.join(proj_path, "conan", "profiles", arch["conan_profile"]),
                     "-s",
                     "arch={0}".format(arch["conan_arch"]),
                     "-s",
                     "build_type={0}".format(build_type),
                     "-o",
-                    "nativium_arch={0}".format(arch["conan_arch"]),
-                    "-o",
                     "nativium_name={0}".format(target_config["project_name"]),
                     "-o",
+                    "nativium_arch={0}".format(arch["conan_arch"]),
+                    "-o",
                     "nativium_version={0}".format(target_config["version"]),
+                    "-o",
+                    "nativium_target={0}".format(target_name),
+                    "-o",
+                    "nativium_group={0}".format(
+                        (arch["group"] if "group" in arch else None)
+                    ),
                 ]
 
                 # extra run args
@@ -72,6 +74,7 @@ def run(params):
                 run_args.append("--build=missing")
                 run_args.append("--update")
 
+                # execute
                 r.run(run_args, build_dir)
 
         l.ok()

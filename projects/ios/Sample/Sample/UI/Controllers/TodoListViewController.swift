@@ -2,7 +2,7 @@ import Foundation
 import UIKit
 
 class TodoListViewController: BaseTableViewController, SimpleSearchBarProtocol {
-    var listData: [EZRDomainTodo]?
+    var listData: [NTVDomainTodo]?
     let cellIdentifier = "TodoTableViewCell"
 
     var searchBar = SimpleSearchBar()
@@ -26,9 +26,9 @@ class TodoListViewController: BaseTableViewController, SimpleSearchBarProtocol {
         super.onLoadNewData()
 
         if searchText.isEmpty {
-            listData = EZRRepositoryTodoRepository.findAllOrderByCreatedAtDesc()
+            listData = NTVRepositoryTodoRepository.findAllOrderByCreatedAtDesc()
         } else {
-            listData = EZRRepositoryTodoRepository.find(byTitle: searchText)
+            listData = NTVRepositoryTodoRepository.find(byTitle: searchText)
         }
 
         tableView.reloadData()
@@ -44,8 +44,8 @@ class TodoListViewController: BaseTableViewController, SimpleSearchBarProtocol {
         tableView.deselectRow(at: indexPath, animated: true)
 
         if let todo = listData?[indexPath.row] {
-            EZRRepositoryTodoRepository.setDoneById(todo.id, done: !todo.done)
-            listData?[indexPath.row] = EZRRepositoryTodoRepository.find(byId: todo.id)
+            NTVRepositoryTodoRepository.setDoneById(todo.id, done: !todo.done)
+            listData?[indexPath.row] = NTVRepositoryTodoRepository.find(byId: todo.id)
             tableView.reloadRows(at: [indexPath], with: .automatic)
         }
     }

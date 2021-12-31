@@ -56,14 +56,14 @@ class HomeViewModel: NSObject, ObservableObject {
     // MARK: Actions
 
     private func doActionSharedData() {
-        EZRHelperSharedDataHelper.setDemoFlag(!EZRHelperSharedDataHelper.getDemoFlag())
+        NTVHelperSharedDataHelper.setDemoFlag(!NTVHelperSharedDataHelper.getDemoFlag())
         loadData()
     }
 
     private func doActionFileHelper() {
-        guard let core = EZRCoreApplicationCore.shared() else { return }
+        guard let core = NTVCoreApplicationCore.shared() else { return }
 
-        let size = EZRFileHelper.getFileSize(EZRFileHelper.join(core.getInitializationData().basePath, second: "database.db3"))
+        let size = NTVFileHelper.getFileSize(NTVFileHelper.join(core.getInitializationData().basePath, second: "database.db3"))
 
         let message = String(format: "DialogDatabaseSizeMessage".localized, size, Double(size) / 1_048_576)
         alertMessage = .loaded(data: message)
@@ -73,15 +73,15 @@ class HomeViewModel: NSObject, ObservableObject {
         alertMessage = .loading(data: nil)
 
         DispatchQueue.global(qos: .background).async {
-            var headers = [EZRHttpHeader]()
-            headers.append(EZRHttpHeader(name: "Content-Type", value: "application/x-www-form-urlencoded"))
+            var headers = [NTVHttpHeader]()
+            headers.append(NTVHttpHeader(name: "Content-Type", value: "application/x-www-form-urlencoded"))
 
-            var params = [EZRHttpRequestParam]()
-            params.append(EZRHttpRequestParam(name: "username", value: "demo"))
-            params.append(EZRHttpRequestParam(name: "password", value: "demo"))
+            var params = [NTVHttpRequestParam]()
+            params.append(NTVHttpRequestParam(name: "username", value: "demo"))
+            params.append(NTVHttpRequestParam(name: "password", value: "demo"))
 
-            let request = EZRHttpRequest(url: "http://httpbin.org/post", method: .methodPost, params: params, headers: headers, body: "")
-            let response = EZRHttpClient.shared()?.do(request)
+            let request = NTVHttpRequest(url: "http://httpbin.org/post", method: .methodPost, params: params, headers: headers, body: "")
+            let response = NTVHttpClient.shared()?.do(request)
             let message = String(format: "DialogHttpMessage".localized, request.url, response?.body ?? "")
             DispatchQueue.main.async {
                 self.alertMessage = .loaded(data: message)
@@ -93,15 +93,15 @@ class HomeViewModel: NSObject, ObservableObject {
         alertMessage = .loading(data: nil)
 
         DispatchQueue.global(qos: .background).async {
-            var headers = [EZRHttpHeader]()
-            headers.append(EZRHttpHeader(name: "Content-Type", value: "application/x-www-form-urlencoded"))
+            var headers = [NTVHttpHeader]()
+            headers.append(NTVHttpHeader(name: "Content-Type", value: "application/x-www-form-urlencoded"))
 
-            var params = [EZRHttpRequestParam]()
-            params.append(EZRHttpRequestParam(name: "username", value: "demo"))
-            params.append(EZRHttpRequestParam(name: "password", value: "demo"))
+            var params = [NTVHttpRequestParam]()
+            params.append(NTVHttpRequestParam(name: "username", value: "demo"))
+            params.append(NTVHttpRequestParam(name: "password", value: "demo"))
 
-            let request = EZRHttpRequest(url: "https://httpbin.org/post", method: .methodPost, params: params, headers: headers, body: "")
-            let response = EZRHttpClient.shared()?.do(request)
+            let request = NTVHttpRequest(url: "https://httpbin.org/post", method: .methodPost, params: params, headers: headers, body: "")
+            let response = NTVHttpClient.shared()?.do(request)
             let message = String(format: "DialogHttpMessage".localized, request.url, response?.body ?? "")
 
             DispatchQueue.main.async {
@@ -111,7 +111,7 @@ class HomeViewModel: NSObject, ObservableObject {
     }
 
     private func doActionSecretKey() {
-        let secretKey = EZRHelperEnvironmentHelper.getSecretKey()
+        let secretKey = NTVHelperEnvironmentHelper.getSecretKey()
         let message = String(format: "DialogSecretKeyMessage".localized, secretKey)
 
         alertMessage = .loaded(data: message)
@@ -121,14 +121,14 @@ class HomeViewModel: NSObject, ObservableObject {
         self.showTodoList = .loading
 
         DispatchQueue.global(qos: .background).async {
-            let count = EZRRepositoryTodoRepository.count()
+            let count = NTVRepositoryTodoRepository.count()
             
             if count == 0 {
                 // add some rows
-                EZRRepositoryTodoRepository.truncate()
+                NTVRepositoryTodoRepository.truncate()
 
                 for i in 1 ... 100 {
-                    let todo = EZRDomainTodo(
+                    let todo = NTVDomainTodo(
                         id: 0,
                         title: String(format: "Title %i", i),
                         body: String(format: "New TODO item description: %i", i),
@@ -138,7 +138,7 @@ class HomeViewModel: NSObject, ObservableObject {
                         updatedAt: Date()
                     )
 
-                    EZRRepositoryTodoRepository.add(todo)
+                    NTVRepositoryTodoRepository.add(todo)
                 }
             }
 
@@ -156,14 +156,14 @@ class HomeViewModel: NSObject, ObservableObject {
             return
         }
         
-        let sdk = EZRCoreApplicationCore.shared()?.getVersion() ?? ""
+        let sdk = NTVCoreApplicationCore.shared()?.getVersion() ?? ""
         let message = "Version: \(version)\nBuild: \(build)\nSDK: \(sdk)"
         
         alertMessage = .loaded(data: message)
     }
     
     func doActionWebServer() {
-        guard let server = EZRHttpServer.shared() else { return }
+        guard let server = NTVHttpServer.shared() else { return }
         
         DispatchQueue.main.async {
             if server.isRunning() {

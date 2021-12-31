@@ -42,22 +42,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func initialize() {
         // logger
-        EZRLogger.shared()?.setPlatformService(EZRLoggerPlatformServiceImpl())
+        NTVLogger.shared()?.setPlatformService(NTVLoggerPlatformServiceImpl())
 
         #if DEBUG
-            EZRLogger.shared()?.setLevel(EZRLoggerLevel.verbose)
+            NTVLogger.shared()?.setLevel(NTVLoggerLevel.verbose)
         #else
-            EZRLogger.shared()?.setLevel(EZRLoggerLevel.error)
+            NTVLogger.shared()?.setLevel(NTVLoggerLevel.error)
         #endif
 
         // shared data
-        EZRSharedData.shared()?.setPlatformService(EZRSharedDataPlatformServiceImpl())
+        NTVSharedData.shared()?.setPlatformService(NTVSharedDataPlatformServiceImpl())
 
         // http client (uncomment to use platform http client)
-        EZRHttpClient.shared()?.setPlatformService(EZRHttpClientPlatformServiceImpl())
+        NTVHttpClient.shared()?.setPlatformService(NTVHttpClientPlatformServiceImpl())
 
         // file helper
-        EZRFileHelper.shared()?.setPlatformService(EZRFileHelperPlatformServiceImpl())
+        NTVFileHelper.shared()?.setPlatformService(NTVFileHelperPlatformServiceImpl())
 
         // core
         let basePath = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0]
@@ -67,7 +67,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let language = EnvironmentUtil.getCurrentLanguageCode()
         let countryCode = EnvironmentUtil.getCurrentRegionCode()
 
-        let initializationData = EZRDomainInitializationData(
+        let initializationData = NTVDomainInitializationData(
             appId: Bundle.main.bundleIdentifier!,
             name: EnvironmentUtil.getAppName(),
             basePath: basePath,
@@ -75,7 +75,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             debug: AppData.shared.debug
         )
 
-        let deviceData = EZRDomainDeviceData(
+        let deviceData = NTVDomainDeviceData(
             uniqueIdentifier: EnvironmentUtil.getDeviceId(),
             name: UIDevice.current.name,
             systemName: UIDevice.current.systemName,
@@ -94,13 +94,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             region: countryCode
         )
 
-        EZRCoreApplicationCore.shared()?.initialize(initializationData, deviceData: deviceData)
+        NTVCoreApplicationCore.shared()?.initialize(initializationData, deviceData: deviceData)
 
         // http server
-        let config = EZRHttpServerConfig(port: 9090, staticPath: "")
-        EZRHttpServer.shared()?.initialize(config)
-        EZRHttpServer.shared()?.stop()
-        EZRHttpServer.shared()?.start()
+        let config = NTVHttpServerConfig(port: 9090, staticPath: "")
+        NTVHttpServer.shared()?.initialize(config)
+        NTVHttpServer.shared()?.stop()
+        NTVHttpServer.shared()?.start()
 
         // copy bundle assets
         BundleHelper.extract()

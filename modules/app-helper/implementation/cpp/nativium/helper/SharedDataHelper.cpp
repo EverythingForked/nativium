@@ -3,7 +3,7 @@
 #include "nativium/data/SharedData.hpp"
 #include "nativium/domain/Customer.hpp"
 #include "nativium/helper/CustomerHelper.hpp"
-#include "nativium/helper/EZRCustomerHelper.hpp"
+#include "nativium/helper/NTVCustomerHelper.hpp"
 
 #include "rapidjson/document.h"
 #include "rapidjson/pointer.h"
@@ -21,7 +21,7 @@ using namespace nativium::core;
 
 void SharedDataHelper::setCustomer(const Customer &value)
 {
-    auto customerJson = EZRCustomerHelper::toJson(value);
+    auto customerJson = NTVCustomerHelper::toJson(value);
 
     SharedData::shared()->setString("customer", "data", customerJson);
 }
@@ -35,7 +35,7 @@ Customer SharedDataHelper::getCustomer()
 
     if (json.IsObject())
     {
-        return EZRCustomerHelper::fromJson(json);
+        return NTVCustomerHelper::fromJson(json);
     }
 
     return CustomerHelper::create();

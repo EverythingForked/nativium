@@ -10,7 +10,7 @@ struct SimpleOption: Hashable {
         case .secretKey:
             return "OptionSecretKey".localized
         case .sharedData:
-            let demoFlag = EZRHelperSharedDataHelper.getDemoFlag()
+            let demoFlag = NTVHelperSharedDataHelper.getDemoFlag()
             return String(format: "%@ %@", "OptionSharedData".localized, demoFlag ? "ON" : "OFF")
         case .httpRequest:
             return "OptionHttpRequest".localized
@@ -23,7 +23,7 @@ struct SimpleOption: Hashable {
         case .todo:
             return "OptionTodo".localized
         case .webServer:
-            let demoFlag = EZRHttpServer.shared()?.isRunning() ?? false
+            let demoFlag = NTVHttpServer.shared()?.isRunning() ?? false
             return String(format: "%@ %@", "OptionWebServer".localized, demoFlag ? "ON" : "OFF")
         case .webView:
             return "OptionWebView".localized

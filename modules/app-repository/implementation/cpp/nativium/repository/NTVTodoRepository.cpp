@@ -1,4 +1,4 @@
-#include "nativium/repository/EZRTodoRepository.hpp"
+#include "nativium/repository/NTVTodoRepository.hpp"
 #include "nativium/core/ApplicationCore.hpp"
 #include "nativium/core/ApplicationCoreImpl.hpp"
 #include "nativium/helper/DatabaseHelper.hpp"
@@ -19,7 +19,7 @@ using namespace nativium::domain;
 using namespace nativium::time;
 using namespace nativium::core;
 
-Todo EZRTodoRepository::bindFromRow(SQLite::Statement &row)
+Todo NTVTodoRepository::bindFromRow(SQLite::Statement &row)
 {
     auto todo = TodoHelper::create();
 
@@ -147,7 +147,7 @@ std::vector<Todo> TodoRepository::findAllOrderByCreatedAtDesc()
 
     while (query.executeStep())
     {
-        auto todo = EZRTodoRepository::bindFromRow(query);
+        auto todo = NTVTodoRepository::bindFromRow(query);
         list.push_back(todo);
     }
 
@@ -182,7 +182,7 @@ std::vector<Todo> TodoRepository::findByTitle(const std::string &title)
 
     while (query.executeStep())
     {
-        auto todo = EZRTodoRepository::bindFromRow(query);
+        auto todo = NTVTodoRepository::bindFromRow(query);
         list.push_back(todo);
     }
 
@@ -238,7 +238,7 @@ Todo TodoRepository::findById(int64_t id)
 
     while (query.executeStep())
     {
-        auto todo = EZRTodoRepository::bindFromRow(query);
+        auto todo = NTVTodoRepository::bindFromRow(query);
         return todo;
     }
 

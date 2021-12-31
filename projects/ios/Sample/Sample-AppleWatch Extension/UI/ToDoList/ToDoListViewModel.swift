@@ -2,15 +2,15 @@
 import SwiftUI
 
 class ToDoListViewModel: NSObject, ObservableObject {
-    @Published var listData: [EZRDomainTodo] = []
+    @Published var listData: [NTVDomainTodo] = []
     
     func loadData() {
-        listData = EZRRepositoryTodoRepository.findAllOrderByCreatedAtDesc()
+        listData = NTVRepositoryTodoRepository.findAllOrderByCreatedAtDesc()
     }
     
-    func selectItem(_ item: EZRDomainTodo) {
+    func selectItem(_ item: NTVDomainTodo) {
         guard let index = listData.firstIndex(of: item) else { return }
-        EZRRepositoryTodoRepository.setDoneById(item.id, done: !item.done)
-        listData[index] = EZRRepositoryTodoRepository.find(byId: item.id)
+        NTVRepositoryTodoRepository.setDoneById(item.id, done: !item.done)
+        listData[index] = NTVRepositoryTodoRepository.find(byId: item.id)
     }
 }

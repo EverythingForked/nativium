@@ -1,9 +1,9 @@
-#import "EZRSharedDataPlatformServiceImpl.h"
+#import "NTVSharedDataPlatformServiceImpl.h"
 
-@interface EZRSharedDataPlatformServiceImpl ()
+@interface NTVSharedDataPlatformServiceImpl ()
 @end
 
-@implementation EZRSharedDataPlatformServiceImpl
+@implementation NTVSharedDataPlatformServiceImpl
 
 //------------------------------------------------------------------------------
 #pragma mark - Class Initializer
@@ -28,7 +28,7 @@
 }
 
 //------------------------------------------------------------------------------
-#pragma mark - EZRSharedDataPlatformServiceImpl
+#pragma mark - NTVSharedDataPlatformServiceImpl
 //------------------------------------------------------------------------------
 
 - (void)setString:(nonnull NSString *)groupName key:(nonnull NSString *)key value:(nonnull NSString *)value

@@ -1,4 +1,4 @@
-#include "EZRCustomerHelper.hpp"
+#include "NTVCustomerHelper.hpp"
 
 #include "nativium/core/ApplicationCore.hpp"
 #include "nativium/enumerator/CustomerStatusEnum.hpp"
@@ -36,7 +36,7 @@ std::string CustomerHelper::getToken()
     return ApplicationCore::shared()->getCustomer().token;
 }
 
-Customer EZRCustomerHelper::fromJson(const rapidjson::Value &json)
+Customer NTVCustomerHelper::fromJson(const rapidjson::Value &json)
 {
     auto customer = CustomerHelper::create();
 
@@ -111,7 +111,7 @@ Customer EZRCustomerHelper::fromJson(const rapidjson::Value &json)
     return customer;
 }
 
-std::string EZRCustomerHelper::toJson(const Customer &customer)
+std::string NTVCustomerHelper::toJson(const Customer &customer)
 {
     rapidjson::StringBuffer buffer;
     rapidjson::Writer<rapidjson::StringBuffer> writer(buffer);
@@ -138,7 +138,7 @@ std::string EZRCustomerHelper::toJson(const Customer &customer)
     return json;
 }
 
-Customer EZRCustomerHelper::fromHttpResponse(const HttpResponse httpResponse)
+Customer NTVCustomerHelper::fromHttpResponse(const HttpResponse httpResponse)
 {
     rapidjson::Document json;
     json.Parse(httpResponse.body.c_str());

@@ -160,6 +160,9 @@ def code_format(params):
     if has_tool:
         path_list = [
             {
+                "path": os.path.join(proj_path, "CMakeLists.txt"),
+            },
+            {
                 "path": os.path.join(proj_path, "modules"),
                 "patterns": ["*.cmake"],
             },
@@ -168,12 +171,8 @@ def code_format(params):
                 "patterns": ["CMakeLists.txt"],
             },
             {
-                "path": os.path.join(proj_path, "common"),
+                "path": os.path.join(proj_path, "cmake"),
                 "patterns": ["*.cmake"],
-            },
-            {
-                "path": os.path.join(proj_path, "common"),
-                "patterns": ["CMakeLists.txt"],
             },
         ]
 
@@ -203,24 +202,6 @@ def code_format(params):
                             proj_path,
                             "targets",
                             target_name,
-                            "conan",
-                        ),
-                        "patterns": ["*.cmake"],
-                    },
-                    {
-                        "path": os.path.join(
-                            proj_path,
-                            "targets",
-                            target_name,
-                            "conan",
-                        ),
-                        "patterns": ["CMakeLists.txt"],
-                    },
-                    {
-                        "path": os.path.join(
-                            proj_path,
-                            "targets",
-                            target_name,
                             "support",
                         ),
                         "patterns": ["*.cmake"],
@@ -231,24 +212,6 @@ def code_format(params):
                             "targets",
                             target_name,
                             "support",
-                        ),
-                        "patterns": ["CMakeLists.txt"],
-                    },
-                    {
-                        "path": os.path.join(
-                            proj_path,
-                            "targets",
-                            target_name,
-                            "verbs",
-                        ),
-                        "patterns": ["*.cmake"],
-                    },
-                    {
-                        "path": os.path.join(
-                            proj_path,
-                            "targets",
-                            target_name,
-                            "verbs",
                         ),
                         "patterns": ["CMakeLists.txt"],
                     },
@@ -259,14 +222,38 @@ def code_format(params):
             l.i("Formating CMake files...")
 
             for path_list_item in path_list:
-                patterns = path_list_item["patterns"]
+                patterns = (
+                    path_list_item["patterns"] if "patterns" in path_list_item else None
+                )
 
-                for pattern_item in patterns:
-                    files = f.find_files(
-                        path_list_item["path"], pattern_item, recursive=True
+                if patterns:
+                    for pattern_item in patterns:
+                        files = f.find_files(
+                            path_list_item["path"], pattern_item, recursive=True
+                        )
+
+                        for file_item in files:
+                            l.i(
+                                "Formatting file: {0}...".format(
+                                    os.path.relpath(file_item)
+                                )
+                            )
+
+                            run_args = [
+                                "cmake-format",
+                                "-c",
+                                ".cmake-format",
+                                "-i",
+                                file_item,
+                            ]
+
+                            r.run(run_args, proj_path)
+                else:
+                    file_item = (
+                        path_list_item["path"] if "path" in path_list_item else None
                     )
 
-                    for file_item in files:
+                    if file_item:
                         l.i(
                             "Formatting file: {0}...".format(os.path.relpath(file_item))
                         )

@@ -140,13 +140,13 @@ std::shared_ptr<SQLite::Database> ApplicationCoreImpl::getDB()
 
 std::string ApplicationCoreImpl::getVersion()
 {
-#ifdef PROJECT_CONFIG_VERSION
-#define PROJECT_CONFIG_VERSION_STR PROJECT_CONFIG_VERSION
+#ifdef NATIVIUM_CONFIG_VERSION
+#define NATIVIUM_CONFIG_VERSION_STR NATIVIUM_CONFIG_VERSION
 #else
-#define PROJECT_CONFIG_VERSION_STR "1.0.0"
+#define NATIVIUM_CONFIG_VERSION_STR "1.0.0"
 #endif
 
-    return PROJECT_CONFIG_VERSION_STR;
+    return NATIVIUM_CONFIG_VERSION_STR;
 }
 
 } // namespace core

@@ -15,10 +15,10 @@ namespace helper
 using namespace domain;
 using namespace nativium::net::http;
 
-class EZRCustomerHelper : public CustomerHelper
+class NTVCustomerHelper : public CustomerHelper
 {
 public:
-    virtual ~EZRCustomerHelper() {}
+    virtual ~NTVCustomerHelper() {}
 
     static Customer fromJson(const rapidjson::Value &json);
     static std::string toJson(const Customer &customer);

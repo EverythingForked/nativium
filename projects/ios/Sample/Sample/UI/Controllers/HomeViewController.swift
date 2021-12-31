@@ -85,14 +85,14 @@ class HomeViewController: BaseTableViewController {
     // MARK: Actions
 
     func doActionSharedData() {
-        EZRHelperSharedDataHelper.setDemoFlag(!EZRHelperSharedDataHelper.getDemoFlag())
+        NTVHelperSharedDataHelper.setDemoFlag(!NTVHelperSharedDataHelper.getDemoFlag())
         tableView.reloadData()
     }
 
     func doActionFileHelper() {
-        guard let core = EZRCoreApplicationCore.shared() else { return }
+        guard let core = NTVCoreApplicationCore.shared() else { return }
 
-        let size = EZRFileHelper.getFileSize(EZRFileHelper.join(core.getInitializationData().basePath, second: "database.db3"))
+        let size = NTVFileHelper.getFileSize(NTVFileHelper.join(core.getInitializationData().basePath, second: "database.db3"))
 
         let message = String(format: "DialogDatabaseSizeMessage".localized, size, Double(size) / 1_048_576)
         UIUtil.showAlert(parent: self, title: "DialogTitle".localized, message: message, onClose: nil)
@@ -102,15 +102,15 @@ class HomeViewController: BaseTableViewController {
         showLoadingView(show: true)
 
         DispatchQueue.global(qos: .background).async {
-            var headers = [EZRHttpHeader]()
-            headers.append(EZRHttpHeader(name: "Content-Type", value: "application/x-www-form-urlencoded"))
+            var headers = [NTVHttpHeader]()
+            headers.append(NTVHttpHeader(name: "Content-Type", value: "application/x-www-form-urlencoded"))
 
-            var params = [EZRHttpRequestParam]()
-            params.append(EZRHttpRequestParam(name: "username", value: "demo"))
-            params.append(EZRHttpRequestParam(name: "password", value: "demo"))
+            var params = [NTVHttpRequestParam]()
+            params.append(NTVHttpRequestParam(name: "username", value: "demo"))
+            params.append(NTVHttpRequestParam(name: "password", value: "demo"))
 
-            let request = EZRHttpRequest(url: "http://httpbin.org/post", method: .methodPost, params: params, headers: headers, body: "")
-            let response = EZRHttpClient.shared()?.do(request)
+            let request = NTVHttpRequest(url: "http://httpbin.org/post", method: .methodPost, params: params, headers: headers, body: "")
+            let response = NTVHttpClient.shared()?.do(request)
 
             DispatchQueue.main.async {
                 UIUtil.showAlert(parent: self, title: "DialogTitle".localized, message: String(format: "DialogHttpMessage".localized, request.url, response?.body ?? ""), onClose: nil)
@@ -123,15 +123,15 @@ class HomeViewController: BaseTableViewController {
         showLoadingView(show: true)
 
         DispatchQueue.global(qos: .background).async {
-            var headers = [EZRHttpHeader]()
-            headers.append(EZRHttpHeader(name: "Content-Type", value: "application/x-www-form-urlencoded"))
+            var headers = [NTVHttpHeader]()
+            headers.append(NTVHttpHeader(name: "Content-Type", value: "application/x-www-form-urlencoded"))
 
-            var params = [EZRHttpRequestParam]()
-            params.append(EZRHttpRequestParam(name: "username", value: "demo"))
-            params.append(EZRHttpRequestParam(name: "password", value: "demo"))
+            var params = [NTVHttpRequestParam]()
+            params.append(NTVHttpRequestParam(name: "username", value: "demo"))
+            params.append(NTVHttpRequestParam(name: "password", value: "demo"))
 
-            let request = EZRHttpRequest(url: "https://httpbin.org/post", method: .methodPost, params: params, headers: headers, body: "")
-            let response = EZRHttpClient.shared()?.do(request)
+            let request = NTVHttpRequest(url: "https://httpbin.org/post", method: .methodPost, params: params, headers: headers, body: "")
+            let response = NTVHttpClient.shared()?.do(request)
 
             DispatchQueue.main.async {
                 UIUtil.showAlert(parent: self, title: "DialogTitle".localized, message: String(format: "DialogHttpMessage".localized, request.url, response?.body ?? ""), onClose: nil)
@@ -141,7 +141,7 @@ class HomeViewController: BaseTableViewController {
     }
 
     func doActionSecretKey() {
-        let secretKey = EZRHelperEnvironmentHelper.getSecretKey()
+        let secretKey = NTVHelperEnvironmentHelper.getSecretKey()
         let message = String(format: "DialogSecretKeyMessage".localized, secretKey)
 
         UIUtil.showAlert(parent: self, title: "DialogTitle".localized, message: message, onClose: nil)
@@ -151,14 +151,14 @@ class HomeViewController: BaseTableViewController {
         showLoadingView(show: true)
 
         DispatchQueue.global(qos: .background).async {
-            let count = EZRRepositoryTodoRepository.count()
+            let count = NTVRepositoryTodoRepository.count()
 
             if count == 0 {
                 // add some rows
-                EZRRepositoryTodoRepository.truncate()
+                NTVRepositoryTodoRepository.truncate()
 
                 for i in 1 ... 100 {
-                    let todo = EZRDomainTodo(
+                    let todo = NTVDomainTodo(
                         id: 0,
                         title: String(format: "Title %i", i),
                         body: String(format: "New TODO item description: %i", i),
@@ -168,7 +168,7 @@ class HomeViewController: BaseTableViewController {
                         updatedAt: Date()
                     )
 
-                    EZRRepositoryTodoRepository.add(todo)
+                    NTVRepositoryTodoRepository.add(todo)
                 }
             }
 
@@ -181,7 +181,7 @@ class HomeViewController: BaseTableViewController {
     }
 
     func doActionWebServer() {
-        guard let server = EZRHttpServer.shared() else { return }
+        guard let server = NTVHttpServer.shared() else { return }
 
         DispatchQueue.main.async {
             if server.isRunning() {

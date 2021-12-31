@@ -2,7 +2,7 @@
 #include "nativium/core/ApplicationCore.hpp"
 #include "nativium/core/ApplicationCoreImpl.hpp"
 #include "nativium/helper/CustomerHelper.hpp"
-#include "nativium/helper/EZRCustomerHelper.hpp"
+#include "nativium/helper/NTVCustomerHelper.hpp"
 #include "nativium/helper/ResponseHelper.hpp"
 #include "nativium/systemservice/CustomerSystemServiceLoginData.hpp"
 
@@ -44,7 +44,7 @@ CustomerSystemServiceLoginData CustomerSystemService::login(const std::string &u
     auto httpResponse = HttpClient::shared()->doRequest(httpRequest);
 
     auto response = ResponseHelper::fromHttpResponse(httpResponse);
-    auto customer = EZRCustomerHelper::fromHttpResponse(httpResponse);
+    auto customer = NTVCustomerHelper::fromHttpResponse(httpResponse);
     auto data = CustomerSystemServiceLoginData{response, customer};
 
     if (response.success)

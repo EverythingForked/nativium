@@ -1,5 +1,3 @@
-"""Distribute target package"""
-
 import os
 
 from pygemstones.type import list as ls

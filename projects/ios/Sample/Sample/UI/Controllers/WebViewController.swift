@@ -6,7 +6,7 @@ class WebViewController: BaseViewController, WKNavigationDelegate {
     var webView: WKWebView!
 
     func reload() {
-        var url = EZRHttpServer.shared()?.getSocketAddress() ?? ""
+        var url = NTVHttpServer.shared()?.getSocketAddress() ?? ""
         url = url.replacingOccurrences(of: "0.0.0.0", with: "localhost")
 
         var request = URLRequest(url: URL(string: url)!)

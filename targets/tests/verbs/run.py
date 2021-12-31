@@ -1,7 +1,6 @@
-"""Build target"""
-
 import os
 
+from conans import tools
 from pygemstones.io import file as f
 from pygemstones.system import runner as r
 from pygemstones.type import list as ls
@@ -39,50 +38,43 @@ def run(params):
                     "target",
                 )
 
+                # prepare
                 clean_build_dir = True
 
                 if param_dry_run and os.path.isdir(build_dir):
                     clean_build_dir = False
 
                 if clean_build_dir:
+                    # clean
                     f.recreate_dir(build_dir)
 
-                run_args = [
-                    "conan",
-                    "build",
-                    os.path.join(
-                        proj_path,
-                        "targets",
-                        target_name,
-                        "conan",
-                        "recipe",
-                        const.FILE_NAME_CONANFILE_PY,
-                    ),
-                    "--source-folder",
-                    os.path.join(
-                        proj_path,
-                        "targets",
-                        target_name,
+                    # generate
+                    run_args = [
                         "cmake",
-                    ),
-                    "--build-folder",
-                    os.path.join(
-                        proj_path,
-                        "build",
-                        target_name,
-                        build_type,
-                        arch["conan_arch"],
-                        "target",
-                    ),
-                    "--install-folder",
-                    os.path.join(
-                        proj_path,
-                        "build",
-                        target_name,
-                        build_type,
-                        arch["conan_arch"],
-                        "conan",
-                    ),
+                        "-S",
+                        os.path.join(proj_path),
+                        "-B",
+                        build_dir,
+                        "-DCMAKE_BUILD_TYPE={0}".format(build_type),
+                        "-DNATIVIUM_NAME={0}".format(target_config["project_name"]),
+                        "-DNATIVIUM_VERSION={0}".format(target_config["version"]),
+                        "-DNATIVIUM_ARCH={0}".format(arch["conan_arch"]),
+                        "-DNATIVIUM_TARGET={0}".format(target_name),
+                        "-DNATIVIUM_PLATFORM_ARCH={0}".format(
+                            tools.to_apple_arch(arch["conan_arch"])
+                        ),
+                        "-DNATIVIUM_GROUP={0}".format(
+                            (arch["group"] if "group" in arch else None)
+                        ),
+                    ]
+
+                    r.run(run_args, proj_path)
+
+                # build
+                run_args = [
+                    "cmake",
+                    "--build",
+                    ".",
                 ]
 
                 r.run(run_args, build_dir)

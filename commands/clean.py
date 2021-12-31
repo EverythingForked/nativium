@@ -1,5 +1,3 @@
-"""Cleanup the workspace"""
-
 import os
 
 from pygemstones.io import file as f

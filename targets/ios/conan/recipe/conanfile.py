@@ -55,19 +55,15 @@ class TargetConan(ConanFile):
     def build(self):
         cmake = CMake(self, generator="Xcode")
         cmake.definitions["CMAKE_BUILD_TYPE"] = self.settings.build_type
-        cmake.definitions["PROJECT_CONFIG_NAME"] = self.options.get_safe(
-            "nativium_name"
-        )
-        cmake.definitions["PROJECT_CONFIG_VERSION"] = self.options.get_safe(
+        cmake.definitions["NATIVIUM_NAME"] = self.options.get_safe("nativium_name")
+        cmake.definitions["NATIVIUM_CONFIG_VERSION"] = self.options.get_safe(
             "nativium_version"
         )
-        cmake.definitions["PROJECT_CONFIG_ARCH"] = self.options.get_safe(
-            "nativium_arch"
-        )
-        cmake.definitions["PROJECT_CONFIG_GROUP"] = self.options.get_safe(
+        cmake.definitions["NATIVIUM_ARCH"] = self.options.get_safe("nativium_arch")
+        cmake.definitions["NATIVIUM_GROUP"] = self.options.get_safe(
             "nativium_group"
         )
-        cmake.definitions["PROJECT_CONFIG_PLATFORM_ARCH"] = self.get_platform_arch()
+        cmake.definitions["NATIVIUM_PLATFORM_ARCH"] = self.get_platform_arch()
         cmake.configure()
         cmake.build()
 
@@ -78,7 +74,7 @@ class TargetConan(ConanFile):
             self.options["poco"].enable_fork = False
 
     def requirements(self):
-        self.requires("sqlite3/3.36.0")
+        self.requires("sqlite3/3.37.1")
         self.requires("rapidjson/1.1.0")
         self.requires("openssl/1.1.1k")
         self.requires("sqlitecpp/3.1.1")

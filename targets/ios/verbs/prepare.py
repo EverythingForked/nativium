@@ -1,5 +1,3 @@
-"""Prepare target files and dependencies"""
-
 import os
 
 from pygemstones.io import file as f

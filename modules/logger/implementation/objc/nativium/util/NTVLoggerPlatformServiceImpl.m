@@ -1,10 +1,10 @@
-#import "EZRLoggerPlatformServiceImpl.h"
+#import "NTVLoggerPlatformServiceImpl.h"
 
-@interface EZRLoggerPlatformServiceImpl ()
+@interface NTVLoggerPlatformServiceImpl ()
 @property(nonatomic, strong) NSString *group;
 @end
 
-@implementation EZRLoggerPlatformServiceImpl
+@implementation NTVLoggerPlatformServiceImpl
 
 //------------------------------------------------------------------------------
 #pragma mark - Class Initializer
@@ -39,7 +39,7 @@
 }
 
 //------------------------------------------------------------------------------
-#pragma mark - EZRLoggerPlatformServiceImpl
+#pragma mark - NTVLoggerPlatformServiceImpl
 //------------------------------------------------------------------------------
 
 - (void)v:(nonnull NSString *)message

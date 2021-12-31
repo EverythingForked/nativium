@@ -12,10 +12,10 @@ namespace repository
 
 using namespace domain;
 
-class EZRTodoRepository : TodoRepository
+class NTVTodoRepository : TodoRepository
 {
 public:
-    virtual ~EZRTodoRepository() {}
+    virtual ~NTVTodoRepository() {}
     static Todo bindFromRow(SQLite::Statement &row);
 };
 

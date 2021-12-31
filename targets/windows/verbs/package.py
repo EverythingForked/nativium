@@ -1,5 +1,3 @@
-"""Package target"""
-
 import os
 
 from pygemstones.io import file as f

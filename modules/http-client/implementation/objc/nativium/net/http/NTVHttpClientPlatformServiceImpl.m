@@ -1,10 +1,10 @@
-#import "EZRHttpClientPlatformServiceImpl.h"
+#import "NTVHttpClientPlatformServiceImpl.h"
 
-@interface EZRHttpClientPlatformServiceImpl ()
+@interface NTVHttpClientPlatformServiceImpl ()
 
 @end
 
-@implementation EZRHttpClientPlatformServiceImpl
+@implementation NTVHttpClientPlatformServiceImpl
 
 //------------------------------------------------------------------------------
 #pragma mark - Class Initializer
@@ -30,10 +30,10 @@
 }
 
 //------------------------------------------------------------------------------
-#pragma mark - EZRHttpClientPlatformServiceImpl
+#pragma mark - NTVHttpClientPlatformServiceImpl
 //------------------------------------------------------------------------------
 
-- (nonnull EZRHttpResponse *)doRequest:(nonnull EZRHttpRequest *)request
+- (nonnull NTVHttpResponse *)doRequest:(nonnull NTVHttpRequest *)request
 {
     // general
     NSURL *nsurl = [[NSURL alloc] initWithString:[request url]];
@@ -44,7 +44,7 @@
     // headers
     if ([request headers] != nil && [request headers].count > 0)
     {
-        for (EZRHttpHeader *header in [request headers])
+        for (NTVHttpHeader *header in [request headers])
         {
             if ([header name] != nil && [header value] != nil)
             {
@@ -58,7 +58,7 @@
 
     if ([request params] != nil && [request params].count > 0)
     {
-        for (EZRHttpRequestParam *param in [request params])
+        for (NTVHttpRequestParam *param in [request params])
         {
             if ([param name] != nil && [param value] != nil)
             {
@@ -105,7 +105,7 @@
 
     if (error != nil)
     {
-        return [[EZRHttpResponse alloc] initWithCode:((int)[httpResponse statusCode]) body:@"" url:[request url] headers:@[]];
+        return [[NTVHttpResponse alloc] initWithCode:((int)[httpResponse statusCode]) body:@"" url:[request url] headers:@[]];
     }
 
     // get response body
@@ -114,7 +114,7 @@
 
     // get response headers
     NSDictionary *responderHeaders = [(NSHTTPURLResponse *)response allHeaderFields];
-    NSMutableArray<EZRHttpHeader *> *headers = [NSMutableArray array];
+    NSMutableArray<NTVHttpHeader *> *headers = [NSMutableArray array];
 
     if (responderHeaders != nil)
     {
@@ -126,53 +126,53 @@
 
                 if (headerValue != nil)
                 {
-                    EZRHttpHeader *header = [[EZRHttpHeader alloc] initWithName:headerName value:headerValue];
+                    NTVHttpHeader *header = [[NTVHttpHeader alloc] initWithName:headerName value:headerValue];
                     [headers addObject:header];
                 }
             }
         }
     }
 
-    return [[EZRHttpResponse alloc] initWithCode:((int)[httpResponse statusCode]) body:responseBody url:[request url] headers:headers];
+    return [[NTVHttpResponse alloc] initWithCode:((int)[httpResponse statusCode]) body:responseBody url:[request url] headers:headers];
 }
 
-- (nonnull NSString *)getMethodFromHttpMethod:(EZRHttpMethod)method
+- (nonnull NSString *)getMethodFromHttpMethod:(NTVHttpMethod)method
 {
     switch (method)
     {
-    case EZRHttpMethodMethodGet:
+    case NTVHttpMethodMethodGet:
         return @"GET";
         break;
 
-    case EZRHttpMethodMethodPost:
+    case NTVHttpMethodMethodPost:
         return @"POST";
         break;
 
-    case EZRHttpMethodMethodPut:
+    case NTVHttpMethodMethodPut:
         return @"PUT";
         break;
 
-    case EZRHttpMethodMethodHead:
+    case NTVHttpMethodMethodHead:
         return @"HEAD";
         break;
 
-    case EZRHttpMethodMethodPatch:
+    case NTVHttpMethodMethodPatch:
         return @"PATCH";
         break;
 
-    case EZRHttpMethodMethodTrace:
+    case NTVHttpMethodMethodTrace:
         return @"TRACE";
         break;
 
-    case EZRHttpMethodMethodDelete:
+    case NTVHttpMethodMethodDelete:
         return @"DELETE";
         break;
 
-    case EZRHttpMethodMethodConnect:
+    case NTVHttpMethodMethodConnect:
         return @"CONNECT";
         break;
 
-    case EZRHttpMethodMethodOptions:
+    case NTVHttpMethodMethodOptions:
         return @"OPTIONS";
         break;
 
