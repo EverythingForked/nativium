@@ -59,13 +59,13 @@ def run(params):
                     "nativium_version={0}".format(target_config["version"]),
                     "-o",
                     "nativium_target={0}".format(target_name),
-                    "-o",
-                    "nativium_group={0}".format(
-                        (arch["group"] if "group" in arch else None)
-                    ),
                 ]
 
                 # extra run args
+                if "group" in arch:
+                    run_args.append("-o"),
+                    run_args.append("nativium_group={0}".format(arch["group"]))
+
                 if p.is_macos():
                     run_args.append("-s"),
                     run_args.append("os.version={0}".format(arch["min_version"]))

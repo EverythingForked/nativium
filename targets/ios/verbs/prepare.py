@@ -87,15 +87,18 @@ def run(params):
                     ),
                 ]
 
+                # extra run args
                 if "build_min_version" in arch:
                     run_args.append(
                         "-s:b",
                     )
                     run_args.append("os.version={0}".format(arch["build_min_version"]))
 
+                # final run args
                 run_args.append("--build=missing")
                 run_args.append("--update")
 
+                # execute
                 r.run(run_args, build_dir)
 
         l.ok()
