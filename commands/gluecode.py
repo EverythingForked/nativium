@@ -10,7 +10,8 @@ from pygemstones.type import list as ls
 from pygemstones.util import log as l
 
 from config import gluecode as config
-from core import const, gluecode
+from core import gluecode
+from core import module as m
 
 
 # -----------------------------------------------------------------------------
@@ -43,7 +44,8 @@ def setup(params):
     version = ls.get_arg_list_value(params["args"], "--version")
 
     if not version or len(version) == 0:
-        version = const.GLUECODE_TOOL_VERSION
+        gluecode_config = config.run(proj_path, params)
+        version = gluecode_config["version"]
 
     l.i("Glue code tool version: {0}".format(version))
 
@@ -88,20 +90,19 @@ def generate(params):
         l.e("Modules folder not exists: {0}".format(modules_path))
 
     # get gluecode modules
-    gluecode_config = config.run(proj_path, None, params)
-    modules = gluecode_config["modules"]
+    module_list = m.get_list(proj_path)
 
-    if modules:
-        l.i("Generating files for all modules...")
+    if module_list:
+        for module_name in module_list:
+            l.i("Generating files for all modules...")
 
-        for m in modules:
-            if not os.path.isdir(os.path.join(modules_path, m, "gluecode")):
-                l.i('Module "{0}" was skipped'.format(m))
+            if not os.path.isdir(os.path.join(modules_path, module_name, "gluecode")):
+                l.i('Module "{0}" was skipped'.format(module_name))
                 continue
 
-            l.i('Generating glue code files for "{0}"...'.format(m))
+            l.i('Generating glue code files for "{0}"...'.format(module_name))
 
-            func_path = "modules.{0}.gluecode.generate.run".format(m)
+            func_path = "modules.{0}.gluecode.generate.run".format(module_name)
             mod_name, func_name = func_path.rsplit(".", 1)
             mod = importlib.import_module(mod_name)
             func = getattr(mod, func_name)

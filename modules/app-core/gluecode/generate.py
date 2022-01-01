@@ -4,7 +4,7 @@ from config import gluecode as config
 
 def run(params):
     proj_path = params["proj_path"]
-    gluecode_config = config.run(proj_path, None, params)
+    gluecode_config = config.run(proj_path, params)
 
     # djinni configurations
     djinni_file = "proj.djinni"
