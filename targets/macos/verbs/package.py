@@ -3,8 +3,7 @@ import os
 from pygemstones.io import file as f
 from pygemstones.util import log as l
 
-from config import target_macos as config
-from core import const
+from targets.macos.config import target as config
 
 
 # -----------------------------------------------------------------------------

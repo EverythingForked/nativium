@@ -4,8 +4,8 @@ from pygemstones.type import list as ls
 from pygemstones.util import log as l
 from pygemstones.vendor import aws as a
 
-from config import target_macos as config
 from core import const, net, pack, util
+from targets.macos.config import target as config
 
 
 # -----------------------------------------------------------------------------

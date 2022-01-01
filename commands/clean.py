@@ -11,6 +11,7 @@ def run(params):
     proj_path = params["proj_path"]
 
     f.remove_dir(os.path.join(proj_path, "build"))
+    f.remove_dir(os.path.join(proj_path, "dist"))
 
     f.remove_files(proj_path, "*.pyc", recursive=True)
     f.remove_files(proj_path, "*.zip", recursive=True)

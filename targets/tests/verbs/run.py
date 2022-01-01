@@ -6,8 +6,7 @@ from pygemstones.system import runner as r
 from pygemstones.type import list as ls
 from pygemstones.util import log as l
 
-from config import target_tests as config
-from core import const
+from targets.tests.config import target as config
 
 
 # -----------------------------------------------------------------------------
@@ -28,7 +27,7 @@ def run(params):
             for build_type in build_types:
                 l.i("Building for: {0}/{1}...".format(arch["conan_arch"], build_type))
 
-                # conan build
+                # variables
                 build_dir = os.path.join(
                     proj_path,
                     "build",
@@ -91,7 +90,6 @@ def run(params):
                         )
 
                         f.remove_dir(build_assets_dir)
-
                         f.copy_dir(assets_dir, build_assets_dir, symlinks=True)
 
                 # run

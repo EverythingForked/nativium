@@ -4,8 +4,8 @@ from pygemstones.type import list as ls
 from pygemstones.util import log as l
 from pygemstones.vendor import aws as a
 
-from config import target_android as config
 from core import const, net, pack, util
+from targets.android.config import target as config
 
 
 # -----------------------------------------------------------------------------

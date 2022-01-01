@@ -5,8 +5,8 @@ from pygemstones.system import platform as p
 from pygemstones.system import runner as r
 from pygemstones.util import log as l
 
-from config import target_android as config
-from core import const, module
+from core import module
+from targets.android.config import target as config
 
 
 # -----------------------------------------------------------------------------

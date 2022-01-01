@@ -6,8 +6,7 @@ from pygemstones.system import runner as r
 from pygemstones.type import list as ls
 from pygemstones.util import log as l
 
-from config import target_ios as config
-from core import const
+from targets.ios.config import target as config
 
 
 # -----------------------------------------------------------------------------

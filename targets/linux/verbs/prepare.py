@@ -4,8 +4,8 @@ from pygemstones.io import file as f
 from pygemstones.system import runner as r
 from pygemstones.util import log as l
 
-from config import target_linux as config
 from core import const
+from targets.linux.config import target as config
 
 
 # -----------------------------------------------------------------------------
@@ -39,14 +39,12 @@ def run(params):
                     "install",
                     os.path.join(
                         proj_path,
-                        "targets",
-                        target_name,
                         "conan",
                         "recipe",
                         const.FILE_NAME_CONANFILE_PY,
                     ),
                     "--profile",
-                    arch["conan_profile"],
+                    os.path.join(proj_path, "conan", "profiles", arch["conan_profile"]),
                     "-s",
                     "arch={0}".format(arch["conan_arch"]),
                     "-s",

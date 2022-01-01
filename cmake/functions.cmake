@@ -19,27 +19,6 @@ macro(nativium_add_modules)
     message(STATUS "Nativium: Modules added")
 endmacro()
 
-# add target
-macro(nativium_add_target name)
-    message(STATUS "Nativium: Adding target ${name}")
-    include(${NATIVIUM_TARGETS_PATH}/${name}/cmake/target.cmake)
-endmacro()
-
-# add all targets
-macro(nativium_add_targets)
-    message(STATUS "Nativium: Adding targets...")
-
-    nativium_list_subdirs(targets ${NATIVIUM_TARGETS_PATH} TRUE)
-
-    foreach(target ${targets})
-        if(EXISTS "${NATIVIUM_TARGETS_PATH}/${target}/cmake/target.cmake")
-            nativium_add_target(${target})
-        endif()
-    endforeach()
-
-    message(STATUS "Nativium: Targets added")
-endmacro()
-
 # list all subdirs
 macro(nativium_list_subdirs retval curdir return_relative)
     file(

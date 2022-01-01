@@ -3,8 +3,7 @@ import os
 from pygemstones.io import file as f
 from pygemstones.util import log as l
 
-from config import target_windows as config
-from core import const
+from targets.windows.config import target as config
 
 
 # -----------------------------------------------------------------------------

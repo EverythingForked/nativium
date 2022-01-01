@@ -1,4 +1,4 @@
-# Configurations
+# main configurations
 cmake_minimum_required(VERSION 3.20.0)
 
 set(NATIVIUM_NAME
@@ -39,24 +39,31 @@ set(NATIVIUM_GROUP
 get_filename_component(CMAKE_SOURCE_REALPATH "${CMAKE_SOURCE_DIR}" REALPATH)
 set(NATIVIUM_ROOT_PATH ${CMAKE_SOURCE_REALPATH})
 
-# Platform configurations (APPLE)
-if(NATIVIUM_SYSTEM_APPLE EQUAL YES)
-    set(NATIVIUM_BUILD_PATH
-        ${NATIVIUM_ROOT_PATH}/build/${NATIVIUM_TARGET}/${CMAKE_BUILD_TYPE}/${NATIVIUM_GROUP}/${NATIVIUM_ARCH}
-        CACHE INTERNAL ""
-    )
+# project
+project(${NATIVIUM_NAME})
 
-    set(CMAKE_OSX_ARCHITECTURES "${NATIVIUM_ARCH}")
+# common
+include(${NATIVIUM_ROOT_PATH}/cmake/common.cmake)
 
-    set(DEVELOPMENT_TEAM_ID
-        ""
-        CACHE STRING "Development Team ID"
-    )
+# platform configurations
+if(NATIVIUM_SYSTEM_APPLE)
+    if(NATIVIUM_TARGET STREQUAL "ios")
+        set(NATIVIUM_SYSTEM_APPLE_MOBILE YES)
+    else()
+        set(NATIVIUM_SYSTEM_APPLE_MOBILE NO)
+    endif()
 
-    set(CODE_SIGN_IDENTITY
-        ""
-        CACHE STRING "Sign Identity"
-    )
+    if(NATIVIUM_SYSTEM_APPLE_MOBILE)
+        set(NATIVIUM_BUILD_PATH
+            ${NATIVIUM_ROOT_PATH}/build/${NATIVIUM_TARGET}/${CMAKE_BUILD_TYPE}/${NATIVIUM_GROUP}/${NATIVIUM_ARCH}
+            CACHE INTERNAL ""
+        )
+    else()
+        set(NATIVIUM_BUILD_PATH
+            ${NATIVIUM_ROOT_PATH}/build/${NATIVIUM_TARGET}/${CMAKE_BUILD_TYPE}/${NATIVIUM_ARCH}
+            CACHE INTERNAL ""
+        )
+    endif()
 else()
     set(NATIVIUM_BUILD_PATH
         ${NATIVIUM_ROOT_PATH}/build/${NATIVIUM_TARGET}/${CMAKE_BUILD_TYPE}/${NATIVIUM_ARCH}
@@ -64,25 +71,5 @@ else()
     )
 endif()
 
-# Project
-project(${NATIVIUM_NAME})
-
-# Conan
-include(${NATIVIUM_BUILD_PATH}/conan/conanbuildinfo.cmake)
-conan_basic_setup()
-
-# Common
-include(${NATIVIUM_ROOT_PATH}/cmake/common.cmake)
-
-# Test specific configuration by platform
-if(${NATIVIUM_SYSTEM_APPLE})
-    include(${NATIVIUM_ROOT_PATH}/cmake/platforms/apple.cmake)
-endif()
-
-if(${NATIVIUM_SYSTEM_LINUX})
-    include(${NATIVIUM_ROOT_PATH}/cmake/platforms/linux.cmake)
-endif()
-
-if(${NATIVIUM_SYSTEM_WINDOWS})
-    include(${NATIVIUM_ROOT_PATH}/cmake/platforms/windows.cmake)
-endif()
+# specific configuration by target
+include(${NATIVIUM_TARGETS_PATH}/${NATIVIUM_TARGET}/cmake/target.cmake)

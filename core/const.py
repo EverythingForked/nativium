@@ -22,3 +22,6 @@ PROFILE_BUILD_LINUX = "default"
 PROFILE_BUILD_DEFAULT = "default"
 
 DOCS_DEFAULT_NAME = "default"
+
+APPLE_OS_LIST = ["iOS", "tvOS", "watchOS", "macOS"]
+APPLE_MOBILE_OS_LIST = ["iOS", "tvOS", "watchOS"]

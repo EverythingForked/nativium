@@ -4,8 +4,8 @@ from pygemstones.io import file as f
 from pygemstones.system import runner as r
 from pygemstones.util import log as l
 
-from config import target_android as config
 from core import const, target
+from targets.android.config import target as config
 
 
 # -----------------------------------------------------------------------------
@@ -34,21 +34,26 @@ def run(params):
 
                 f.recreate_dir(build_dir)
 
+                build_profile = target.get_build_profile()
+
+                if build_profile != "default":
+                    build_profile = os.path.join(
+                        proj_path, "conan", "profiles", build_profile
+                    )
+
                 run_args = [
                     "conan",
                     "install",
                     os.path.join(
                         proj_path,
-                        "targets",
-                        target_name,
                         "conan",
                         "recipe",
                         const.FILE_NAME_CONANFILE_PY,
                     ),
                     "-pr:b",
-                    target.get_build_profile(),
+                    build_profile,
                     "-pr:h",
-                    arch["conan_profile"],
+                    os.path.join(proj_path, "conan", "profiles", arch["conan_profile"]),
                     "-s:h",
                     "arch={0}".format(arch["conan_arch"]),
                     "-s:h",
