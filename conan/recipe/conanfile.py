@@ -4,11 +4,12 @@ import sys
 proj_path = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", ".."))
 sys.path.append(proj_path)
 
-from conans import ConanFile
+from conans import CMake, ConanFile, tools
 from pygemstones.io import file as f
 from pygemstones.system import runner as r
 from pygemstones.util import log as l
 
+from core import const as c
 from core import module as m
 
 
@@ -35,6 +36,37 @@ class TargetConan(ConanFile):
     }
     exports_sources = "*"
     generators = "cmake"
+
+    # -----------------------------------------------------------------------------
+    def build(self):
+        # initialize cmake
+        if self.settings.os in c.APPLE_OS_LIST:
+            cmake = CMake(self, generator="Xcode")
+
+            cmake.definitions["CMAKE_OSX_DEPLOYMENT_TARGET"] = self.settings.get_safe(
+                "os.version"
+            )
+        else:
+            cmake = CMake(self)
+
+        if self.settings.os in c.APPLE_MOBILE_OS_LIST:
+            cmake.definitions["NATIVIUM_PLATFORM_ARCH"] = tools.to_apple_arch(
+                self.options.get_safe("nativium_arch"),
+            )
+
+        # definitions
+        cmake.definitions["CMAKE_BUILD_TYPE"] = self.settings.build_type
+        cmake.definitions["NATIVIUM_NAME"] = self.options.get_safe("nativium_name")
+        cmake.definitions["NATIVIUM_VERSION"] = self.options.get_safe(
+            "nativium_version"
+        )
+        cmake.definitions["NATIVIUM_ARCH"] = self.options.get_safe("nativium_arch")
+        cmake.definitions["NATIVIUM_GROUP"] = self.options.get_safe("nativium_group")
+        cmake.definitions["NATIVIUM_TARGET"] = self.options.get_safe("nativium_target")
+
+        # configure and build
+        cmake.configure()
+        cmake.build()
 
     # -----------------------------------------------------------------------------
     def configure(self):

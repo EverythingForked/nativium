@@ -45,35 +45,6 @@ def setup(params):
         cwd=os.getcwd(),
     )
 
-    # copy all targets profile
-    l.i("Copying files...")
-
-    if targets:
-        for target_item in targets:
-            files = f.find_files(
-                os.path.join(
-                    proj_path,
-                    "targets",
-                    target_item,
-                    "conan",
-                    "profile",
-                ),
-                "*profile",
-            )
-
-            if files:
-                conan_profile_dir = os.path.join(
-                    f.home_dir(),
-                    ".conan",
-                    "profiles",
-                )
-
-                for item in files:
-                    filename = os.path.basename(item)
-                    l.i('Copying profile "{0}"...'.format(filename))
-
-                    f.copy_file(item, os.path.join(conan_profile_dir, filename))
-
     # add darwin toolchain
     l.i("Adding darwin toolchain repository...")
 

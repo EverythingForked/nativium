@@ -62,6 +62,8 @@ def run(params):
                     "-s:h",
                     "os.version={0}".format(arch["min_version"]),
                     "-o",
+                    "nativium_target={0}".format(target_name),
+                    "-o",
                     "nativium_arch={0}".format(arch["conan_arch"]),
                     "-o",
                     "nativium_name={0}".format(target_config["project_name"]),

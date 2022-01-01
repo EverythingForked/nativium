@@ -46,30 +46,36 @@ def run(params):
                     # clean
                     f.recreate_dir(build_dir)
 
-                    # generate
-                    run_args = [
-                        "cmake",
-                        "-S",
-                        os.path.join(proj_path),
-                        "-B",
-                        build_dir,
-                        "-DCMAKE_BUILD_TYPE={0}".format(build_type),
-                        "-DNATIVIUM_NAME={0}".format(target_config["project_name"]),
-                        "-DNATIVIUM_VERSION={0}".format(target_config["version"]),
-                        "-DNATIVIUM_ARCH={0}".format(arch["conan_arch"]),
-                        "-DNATIVIUM_TARGET={0}".format(target_name),
-                        "-DNATIVIUM_GROUP={0}".format(
-                            (arch["group"] if "group" in arch else None)
-                        ),
-                    ]
-
-                    r.run(run_args, proj_path)
-
                 # build
                 run_args = [
-                    "cmake",
-                    "--build",
-                    ".",
+                    "conan",
+                    "build",
+                    os.path.join(
+                        proj_path,
+                        "conan",
+                        "recipe",
+                        const.FILE_NAME_CONANFILE_PY,
+                    ),
+                    "--source-folder",
+                    proj_path,
+                    "--build-folder",
+                    os.path.join(
+                        proj_path,
+                        "build",
+                        target_name,
+                        build_type,
+                        arch["conan_arch"],
+                        "target",
+                    ),
+                    "--install-folder",
+                    os.path.join(
+                        proj_path,
+                        "build",
+                        target_name,
+                        build_type,
+                        arch["conan_arch"],
+                        "conan",
+                    ),
                 ]
 
                 r.run(run_args, build_dir)
