@@ -43,7 +43,7 @@ class TargetConan(ConanFile):
         if self.settings.os in c.APPLE_OS_LIST:
             cmake = CMake(self, generator="Xcode")
 
-            cmake.definitions["CMAKE_OSX_DEPLOYMENT_TARGET"] = self.settings.get_safe(
+            cmake.definitions["NATIVIUM_DEPLOYMENT_TARGET"] = self.settings.get_safe(
                 "os.version"
             )
         else:
