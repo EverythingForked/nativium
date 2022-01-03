@@ -41,3 +41,6 @@ set_target_properties(
 target_compile_options(${NATIVIUM_NAME} PUBLIC "${NATIVIUM_COMPILE_OPTIONS}")
 
 target_compile_definitions(${NATIVIUM_NAME} PRIVATE NATIVIUM_VERSION="${NATIVIUM_VERSION}" HAS_UNCAUGHT_EXCEPTIONS=0)
+
+# wasm
+set_target_properties(${NATIVIUM_NAME} PROPERTIES LINK_FLAGS "-s EXPORTED_RUNTIME_METHODS=['ccall','cwrap']")

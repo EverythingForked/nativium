@@ -41,15 +41,19 @@ def code_format(params):
                 "patterns": ["*.cpp", "*.hpp", "*.c", "*.h", "*.m", "*.mm"],
             },
             {
-                "path": os.path.join(proj_path, "projects", "others"),
+                "path": os.path.join(proj_path, "apps", "desktop"),
                 "patterns": ["*.cpp", "*.hpp", "*.c", "*.h", "*.m", "*.mm"],
             },
             {
-                "path": os.path.join(proj_path, "projects", "android"),
+                "path": os.path.join(proj_path, "apps", "android"),
                 "patterns": ["*.cpp", "*.hpp", "*.c", "*.h", "*.m", "*.mm"],
             },
             {
-                "path": os.path.join(proj_path, "projects", "ios", "Sample", "Sample"),
+                "path": os.path.join(proj_path, "apps", "ios"),
+                "patterns": ["*.cpp", "*.hpp", "*.c", "*.h", "*.m", "*.mm"],
+            },
+            {
+                "path": os.path.join(proj_path, "apps", "wasm"),
                 "patterns": ["*.cpp", "*.hpp", "*.c", "*.h", "*.m", "*.mm"],
             },
         ]

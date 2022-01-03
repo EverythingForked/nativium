@@ -88,12 +88,8 @@ def run(params):
                     assets_dir = os.path.join(proj_path, assets_dir)
 
                     if os.path.isdir(assets_dir):
-                        build_assets_dir = os.path.join(
-                            build_dir, "bin", os.path.basename(assets_dir)
-                        )
-
-                        f.remove_dir(build_assets_dir)
-                        f.copy_dir(assets_dir, build_assets_dir, symlinks=True)
+                        target_dir = os.path.join(build_dir, "bin")
+                        f.copy_all(assets_dir, target_dir)
 
                 # run
                 run_args = [

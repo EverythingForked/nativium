@@ -4,7 +4,7 @@ from pygemstones.io import file as f
 from pygemstones.system import runner as r
 from pygemstones.util import log as l
 
-from core import const
+from core import const, target
 from targets.wasm.config import target as config
 
 
@@ -34,6 +34,13 @@ def run(params):
 
                 f.recreate_dir(build_dir)
 
+                build_profile = target.get_build_profile()
+
+                if build_profile != "default":
+                    build_profile = os.path.join(
+                        proj_path, "conan", "profiles", build_profile
+                    )
+
                 run_args = [
                     "conan",
                     "install",
@@ -43,7 +50,9 @@ def run(params):
                         "recipe",
                         const.FILE_NAME_CONANFILE_PY,
                     ),
-                    "--profile",
+                    "-pr:b",
+                    build_profile,
+                    "-pr:h",
                     os.path.join(proj_path, "conan", "profiles", arch["conan_profile"]),
                     "-s",
                     "arch={0}".format(arch["conan_arch"]),

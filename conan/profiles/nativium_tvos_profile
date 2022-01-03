@@ -1,5 +1,3 @@
-include(default)
-
 [settings]
 os=tvOS
 os.version=11.0

@@ -1,5 +1,3 @@
-include(default)
-
 [settings]
 os=watchOS
 os.version=5.0

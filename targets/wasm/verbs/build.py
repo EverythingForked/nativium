@@ -87,13 +87,20 @@ def run(params):
                     assets_dir = os.path.join(proj_path, assets_dir)
 
                     if os.path.isdir(assets_dir):
-                        build_assets_dir = os.path.join(
-                            build_dir, "bin", os.path.basename(assets_dir)
-                        )
+                        target_dir = os.path.join(build_dir, "bin")
+                        f.copy_all(assets_dir, target_dir)
 
-                        f.remove_dir(build_assets_dir)
+                # replace data in index.html
+                index_file = os.path.join(build_dir, "bin", "index.html")
 
-                        f.copy_dir(assets_dir, build_assets_dir, symlinks=True)
+                if f.file_exists(index_file):
+                    f.replace_in_file(
+                        index_file, "{nativium-name}", target_config["project_name"]
+                    )
+
+                    f.replace_in_file(
+                        index_file, "{nativium-version}", target_config["version"]
+                    )
 
         l.ok()
     else:

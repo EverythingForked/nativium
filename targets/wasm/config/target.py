@@ -1,13 +1,17 @@
+import os
+
+
 # -----------------------------------------------------------------------------
 def run(proj_path, target_name, params):
     return {
-        "project_name": "nativium",
+        "project_name": "Nativium",
         "version": "1.0.0",
         "build_types": ["Debug", "Release"],
+        "assets_dir": os.path.join("targets", "wasm", "support", "web"),
         "archs": [
             {
-                "arch": "x86_64",
-                "conan_arch": "x86_64",
+                "arch": "wasm",
+                "conan_arch": "wasm",
                 "conan_profile": "nativium_wasm_profile",
             },
         ],

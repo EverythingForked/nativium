@@ -1,8 +1,8 @@
 # target files
-file(GLOB H_FILES_C "${NATIVIUM_ROOT_PATH}/apps/desktop/include/*.h")
-file(GLOB H_FILES_CXX "${NATIVIUM_ROOT_PATH}/apps/desktop/include/*.hpp")
+file(GLOB H_FILES_C "${NATIVIUM_ROOT_PATH}/apps/wasm/include/*.h")
+file(GLOB H_FILES_CXX "${NATIVIUM_ROOT_PATH}/apps/wasm/include/*.hpp")
 
-file(GLOB S_FILES_CXX "${NATIVIUM_ROOT_PATH}/apps/desktop/src/*.cpp")
+file(GLOB S_FILES_CXX "${NATIVIUM_ROOT_PATH}/apps/wasm/src/*.cpp")
 
 # header files
 nativium_add_header_files("${H_FILES_C}")
