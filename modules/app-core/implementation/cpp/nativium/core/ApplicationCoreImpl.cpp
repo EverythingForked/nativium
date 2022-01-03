@@ -1,17 +1,6 @@
 #include "ApplicationCoreImpl.hpp"
 
-#include "nativium/util/Logger.hpp"
-
-#include "nativium/net/http/HttpClient.hpp"
-#include "nativium/net/http/HttpClientLoggerImpl.hpp"
-
-#include "nativium/helper/CustomerHelper.hpp"
-#include "nativium/helper/DatabaseHelper.hpp"
-#include "nativium/helper/SharedDataHelper.hpp"
-
-#include <iostream>
-#include <map>
-#include <sstream>
+#include <memory>
 #include <string>
 
 namespace nativium
@@ -19,15 +8,11 @@ namespace nativium
 namespace core
 {
 
-using namespace nativium::domain;
-using namespace nativium::util;
-using namespace nativium::net::http;
-using namespace nativium::helper;
-
 std::shared_ptr<ApplicationCoreImpl> ApplicationCoreImpl::instance = nullptr;
 
 ApplicationCoreImpl::ApplicationCoreImpl()
 {
+    // ignore
 }
 
 std::shared_ptr<ApplicationCore> ApplicationCore::shared()
@@ -45,97 +30,9 @@ std::shared_ptr<ApplicationCoreImpl> ApplicationCoreImpl::internalSharedInstance
     return instance;
 }
 
-void ApplicationCoreImpl::initialize(const InitializationData &initializationData, const DeviceData &deviceData)
+double ApplicationCoreImpl::multiply(double value1, double value2)
 {
-    Logger::shared()->i("Application initializing...");
-
-    Logger::shared()->i("App ID: " + initializationData.appId);
-    Logger::shared()->i("Name: " + initializationData.name);
-    Logger::shared()->i("Base path: " + initializationData.basePath);
-
-    this->initializationData = std::make_shared<InitializationData>(initializationData);
-    this->deviceData = std::make_shared<DeviceData>(deviceData);
-
-    initializeHttpClient();
-    initializeHttpLogger();
-    initializeDB();
-    initializeCustomer();
-
-    Logger::shared()->i("Application initialized");
-}
-
-void ApplicationCoreImpl::initializeDB()
-{
-    db = DatabaseHelper::initializeDatabase(initializationData->basePath);
-    DatabaseHelper::migrateDatabase(db);
-    Logger::shared()->i("Database initialized and migrated");
-}
-
-void ApplicationCoreImpl::initializeCustomer()
-{
-    auto currentCustomer = SharedDataHelper::getCustomer();
-    customer = std::make_shared<Customer>(currentCustomer);
-    Logger::shared()->i("Customer initialized");
-}
-
-void ApplicationCoreImpl::initializeHttpLogger()
-{
-    if (HttpClient::shared()->getLogger() == nullptr)
-    {
-        auto loggerPS = std::make_shared<HttpClientLoggerImpl>();
-        HttpClient::shared()->setLogger(loggerPS);
-    }
-}
-
-void ApplicationCoreImpl::initializeHttpClient()
-{
-    if (HttpClient::shared()->getPlatformService() == nullptr)
-    {
-        Logger::shared()->i("HTTP client is not initialized");
-    }
-}
-
-InitializationData ApplicationCoreImpl::getInitializationData()
-{
-    return *initializationData;
-}
-
-DeviceData ApplicationCoreImpl::getDeviceData()
-{
-    return *deviceData;
-}
-
-Customer ApplicationCoreImpl::getCustomer()
-{
-    if (customer)
-    {
-        return *customer;
-    }
-
-    return CustomerHelper::create();
-}
-
-void ApplicationCoreImpl::setCustomer(const Customer &customer)
-{
-    this->customer = std::make_shared<Customer>(customer);
-}
-
-std::vector<HttpRequestParam> ApplicationCoreImpl::getDefaultHttpRequestParams()
-{
-    std::vector<HttpRequestParam> params = std::vector<HttpRequestParam>{};
-    return params;
-}
-
-std::vector<HttpHeader> ApplicationCoreImpl::getDefaultHttpRequestHeaders()
-{
-    std::vector<HttpHeader> headers = std::vector<HttpHeader>{};
-    headers.push_back(HttpHeader{"User-Agent", "Nativium Http Client"});
-    return headers;
-}
-
-std::shared_ptr<SQLite::Database> ApplicationCoreImpl::getDB()
-{
-    return db;
+    return (value1 * value2);
 }
 
 std::string ApplicationCoreImpl::getVersion()

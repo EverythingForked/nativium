@@ -3,9 +3,6 @@
 
 #pragma once
 
-#include "nativium/domain/Customer.hpp"
-#include "nativium/domain/DeviceData.hpp"
-#include "nativium/domain/InitializationData.hpp"
 #include <memory>
 #include <string>
 
@@ -21,15 +18,7 @@ public:
 
     static std::shared_ptr<ApplicationCore> shared();
 
-    virtual void initialize(const ::nativium::domain::InitializationData &initializationData, const ::nativium::domain::DeviceData &deviceData) = 0;
-
-    virtual ::nativium::domain::InitializationData getInitializationData() = 0;
-
-    virtual ::nativium::domain::DeviceData getDeviceData() = 0;
-
-    virtual ::nativium::domain::Customer getCustomer() = 0;
-
-    virtual void setCustomer(const ::nativium::domain::Customer &customer) = 0;
+    virtual double multiply(double value1, double value2) = 0;
 
     virtual std::string getVersion() = 0;
 };

@@ -6,9 +6,6 @@
 #import "djinni/objc/DJIMarshal+Private.h"
 #import "nativium/core/NTVCoreApplicationCore+Private.h"
 #import "nativium/core/NTVCoreApplicationCore.h"
-#import "nativium/domain/NTVDomainCustomer+Private.h"
-#import "nativium/domain/NTVDomainDeviceData+Private.h"
-#import "nativium/domain/NTVDomainInitializationData+Private.h"
 #include <exception>
 #include <stdexcept>
 #include <utility>
@@ -45,52 +42,14 @@ static_assert(__has_feature(objc_arc), "Djinni requires ARC to be enabled for th
     DJINNI_TRANSLATE_EXCEPTIONS()
 }
 
-- (void)initialize:(nonnull NTVDomainInitializationData *)initializationData
-        deviceData:(nonnull NTVDomainDeviceData *)deviceData
+- (double)multiply:(double)value1
+            value2:(double)value2
 {
     try
     {
-        _cppRefHandle.get()->initialize(::djinni_generated::InitializationData::toCpp(initializationData),
-                                        ::djinni_generated::DeviceData::toCpp(deviceData));
-    }
-    DJINNI_TRANSLATE_EXCEPTIONS()
-}
-
-- (nonnull NTVDomainInitializationData *)getInitializationData
-{
-    try
-    {
-        auto objcpp_result_ = _cppRefHandle.get()->getInitializationData();
-        return ::djinni_generated::InitializationData::fromCpp(objcpp_result_);
-    }
-    DJINNI_TRANSLATE_EXCEPTIONS()
-}
-
-- (nonnull NTVDomainDeviceData *)getDeviceData
-{
-    try
-    {
-        auto objcpp_result_ = _cppRefHandle.get()->getDeviceData();
-        return ::djinni_generated::DeviceData::fromCpp(objcpp_result_);
-    }
-    DJINNI_TRANSLATE_EXCEPTIONS()
-}
-
-- (nonnull NTVDomainCustomer *)getCustomer
-{
-    try
-    {
-        auto objcpp_result_ = _cppRefHandle.get()->getCustomer();
-        return ::djinni_generated::Customer::fromCpp(objcpp_result_);
-    }
-    DJINNI_TRANSLATE_EXCEPTIONS()
-}
-
-- (void)setCustomer:(nonnull NTVDomainCustomer *)customer
-{
-    try
-    {
-        _cppRefHandle.get()->setCustomer(::djinni_generated::Customer::toCpp(customer));
+        auto objcpp_result_ = _cppRefHandle.get()->multiply(::djinni::F64::toCpp(value1),
+                                                            ::djinni::F64::toCpp(value2));
+        return ::djinni::F64::fromCpp(objcpp_result_);
     }
     DJINNI_TRANSLATE_EXCEPTIONS()
 }
