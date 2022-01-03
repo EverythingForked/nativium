@@ -2,6 +2,7 @@
 file(GLOB_RECURSE H_FILES_CXX "${NATIVIUM_ROOT_PATH}/apps/tests/include/*.hpp")
 file(GLOB_RECURSE S_FILES_CXX "${NATIVIUM_ROOT_PATH}/apps/tests/src/*.cpp")
 
+# module files
 file(GLOB H_FILES_LOGGER_IMPL "${NATIVIUM_MODULES_PATH}/logger/implementation/cpp/nativium/util/Simple*.hpp")
 file(GLOB S_FILES_LOGGER_IMPL "${NATIVIUM_MODULES_PATH}/logger/implementation/cpp/nativium/util/Simple*.cpp")
 
