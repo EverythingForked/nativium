@@ -37,7 +37,7 @@ Supported platforms:
 - tvOS
 - watchOS
 - macCatalyst
-- WebAssembly (wasm)
+- WebAssembly (WASM)
 
 Only need write platform-specific code where it’s necessary .For example, to implement a native user-interface or when working with platform-specific code, like get device battery level.
 
@@ -59,6 +59,7 @@ Nativium have two main concepts:
 - **python:** to write all scripts (everything work from command line)
 - **cmake:** to organize source code and projects to be compiled
 - **conan:** to compile all C++ dependencies
+- **djinni:** to generate glue code between C++ and mobile
 
 ## Template
 

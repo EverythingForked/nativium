@@ -1,11 +1,11 @@
 # Code tools
 
-Ezored has support for code format with command **code"** .
+Nativium has support for code format with command **code"** .
 
 To format all supported files, run the following command:  
 
 ```
-python make.py code format  
+python nativium.py code format  
 ```
 
 Obs 1: Code format use **clang-format** tool inside to format C++ files. You need have it installed and in your **path** to be located.

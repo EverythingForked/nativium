@@ -3,7 +3,7 @@
 
 ## macOS
 
-If you are on a machine with ARM (M1) processor you can change your macOS profile file `ezored_macos_profile` or you can change in the default profile `arch` and `arch_build` settings for `x86_64` with the following commands:
+If you are on a machine with ARM (M1) processor and have problems with `conan`, you can change your macOS profile file `nativium_macos_profile` or the default profile file `arch` and `arch_build` settings for `x86_64` with the following commands:
 
 ```
 conan profile new default --detect
@@ -15,7 +15,7 @@ conan profile update settings.arch_build="x86_64" default
 
 1. Add your framework or xcframework as dependency (see example files below)
 2. Create **Obj-C Bridging Header** file to include your public headers or the main header file
-3. Add to your target **Build Settings** in row **Objective-C Bridging Header** the path of bridging header file, example: "Sample/Sample-Bridging-Header.h"
+3. Add to your target **Build Settings** in row **Objective-C Bridging Header** the path of bridging header file, example: `Sample/Sample-Bridging-Header.h`
 
 ## watchOS
 
@@ -30,7 +30,7 @@ conan profile update settings.arch_build="x86_64" default
 
 1. Add your framework or xcframework as dependency (see example files below)
 2. Create **Obj-C Bridging Header** file to include your public headers or the main header file
-3. Add to your target **Build Settings** in row **Objective-C Bridging Header** the path of bridging header file, example: "Sample/Sample-Bridging-Header.h"
+3. Add to your target **Build Settings** in row **Objective-C Bridging Header** the path of bridging header file, example: `Sample/Sample-Bridging-Header.h`
 
 ## Examples files
 
@@ -39,8 +39,8 @@ conan profile update settings.arch_build="x86_64" default
 ```
 # variables
 IOS_PLATFORM = '9.0'
-EZORED_SDK_LOCAL = false
-EZORED_SDK_VERSION = '1.0.0'
+NATIVIUM_SDK_LOCAL = false
+NATIVIUM_SDK_VERSION = '1.0.0'
 
 # settings
 platform :ios, IOS_PLATFORM
@@ -49,10 +49,10 @@ use_frameworks!
 # dependencies
 def shared_pods
   
-  if EZORED_SDK_LOCAL
-    pod 'ezored', :http => 'http://127.0.0.1:8000/dist.tar.gz'
+  if NATIVIUM_SDK_LOCAL
+    pod 'nativium', :http => 'http://127.0.0.1:8000/dist.tar.gz'
     else
-    pod 'ezored', :http => 'https://ezored.s3.amazonaws.com/dist/ios/' + EZORED_SDK_VERSION + '/dist.tar.gz'
+    pod 'nativium', :http => 'https://nativium.s3.amazonaws.com/dist/ios/' + NATIVIUM_SDK_VERSION + '/dist.tar.gz'
   end
 
 end
@@ -87,7 +87,7 @@ end
 #ifndef Bridging_Header_h
 #define Bridging_Header_h
 
-#include "Ezored.h"
+#include "Nativium.h"
 
 #endif /* Bridging_Header_h */
 ```

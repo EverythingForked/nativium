@@ -5,8 +5,8 @@ Ezored come with C++ test support.
 You can test C++ code with the following commands:
 
 ```
-python make.py target tests prepare
-python make.py target tests run
+python nativium.py target tests prepare
+python nativium.py target tests run
 ```
 
 Obs: The verb **prepare** install all tests dependencies.

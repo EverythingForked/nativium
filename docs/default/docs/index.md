@@ -1,22 +1,22 @@
 # Home
 
 <p align="center">
-    <a href="https://github.com/ezored/ezored" target="_blank" rel="noopener noreferrer">
-        <img width="180" src="images/logo.png" alt="Ezored Logo">
+    <a href="https://github.com/nativium/nativium" target="_blank" rel="noopener noreferrer">
+        <img width="180" src="https://github.com/nativium/nativium/raw/main/extras/images/logo.png" alt="Nativium Logo">
     </a>
     <br>
     <br>
-    C++ Multiplatform Toolkit Template
+    C++ Multiplatform Modular Toolkit Template
     <br>
-    Ezored Philosophy: Write Once And Compile Anywhere
+    Nativium Philosophy: Write Once And Compile Anywhere
     <br>
 </p>
 
 <br>
 
 <p align="center">
-    <a href="https://github.com/ezored/ezored" target="_blank" rel="noopener noreferrer">
-        <img src="images/what-is.png" alt="Ezored Guide" style="width: 85%; max-width: 700px;">
+    <a href="https://github.com/nativium/nativium" target="_blank" rel="noopener noreferrer">
+        <img src="ihttps://github.com/nativium/nativium/raw/main/extras/images/guide.png" alt="Nativium Guide" style="width: 85%; max-width: 700px;">
     </a>
 </p>
 
@@ -24,9 +24,9 @@
 
 ## Source code
 
-You can download Ezored source here:
+You can download Nativium source here:
 
-[https://github.com/ezored/ezored](https://github.com/ezored/ezored)
+[https://github.com/nativium/nativium](https://github.com/nativium/nativium)
 
 ## Demo
 
@@ -40,8 +40,13 @@ The iOS (also watchOS and macOS) sample can be downloaded here:
 
 ## Versions
 
-* iOS: {{ ios_version }}
-* Android: {{ android_version }}
 * Linux: {{ linux_version }}
 * macOS: {{ macos_version }}
 * Windows: {{ windows_version }}
+* iOS: {{ ios_version }}
+* tvOS: {{ tvos_version }}
+* watchOS: {{ watchos_version }}
+* macCatalyst: {{ maccatalyst_version }}
+* Android: {{ android_version }}
+* WebAssembly (WASM): {{ wasm_version }}
+

@@ -8,7 +8,7 @@ The general requirements that you need is:
 4. Conan 1.35.0 ([https://conan.io/](https://conan.io/))
 5. Java 8 (JDK) ([https://www.oracle.com/br/java/technologies/javase/javase-jdk8-downloads.html](https://www.oracle.com/br/java/technologies/javase/javase-jdk8-downloads.html))
 
-These are the tools that Ezored need to work. Check on terminal if you have every tool in your path typing their names (python, pip, cmake, conan and java).
+These are the tools that Nativium need to work. Check on terminal if you have every tool in your path typing their names (python, pip, cmake, conan and java).
 
 And for each platform you need have others small requirements.
 
@@ -20,7 +20,7 @@ And for each platform you need have others small requirements.
 Conan will download NDK and other things to build based on your system.
 ```
 
-**iOS Requirements:**
+**iOS, tvOS and watchOS Requirements:**
 
 1. Supported operational system: macOS.
 2. Xcode.
@@ -45,7 +45,7 @@ Obs: On step #4 the path can change for each macOS version (10.14 is mojave) and
 1. Supported operational system: Windows.
 2. Visual Studio installed.  
 
-Obs 1: Current example in Ezored is using version 2019 (16), change for your needs in conan profile file.
+Obs 1: Current example in Nativium is using version 2019 (16), change for your needs in conan profile file.
 
 Obs 2: Everything was compiled using community version [https://visualstudio.microsoft.com/vs/](https://visualstudio.microsoft.com/vs/).  
 

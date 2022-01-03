@@ -17,11 +17,15 @@ markdown_extensions:
       use_pygments: false
 extra:
   generator: false
-  ios_version: 1.0.0
-  android_version: 1.0.0
   linux_version: 1.0.0
   macos_version: 1.0.0
   windows_version: 1.0.0
+  ios_version: 1.0.0
+  tvos_version: 1.0.0
+  watchos_version: 1.0.0
+  maccatalyst_version: 1.0.0
+  android_version: 1.0.0
+  wasm_version: 1.0.0
 plugins:
   - macros
   - search
@@ -42,5 +46,5 @@ nav:
   - Tests: "tests.md"
   - Projects: "projects.md"
   - Documentation: "documentation.md"
-  - Training: "training.md"
   - Troubleshooting: "troubleshooting.md"
+  - Support: "support.md"

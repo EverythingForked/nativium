@@ -1,11 +1,14 @@
 # Platforms
 
-Since Ezored is a toolkit template it support most used mobile and desktop platforms, but you can add any other that support C++ like Raspberry, WASM, Smart TV or any others embedded devices.
+Nativium has support for most used mobile, desktop and web platforms, but you can add any other that support C++ like Raspberry, Smart TV or embedded devices.
 
 Currently supported platforms:
 
-1. Linux
-2. macOS
-3. Windows
-4. Android
-5. iOS
+- Linux
+- macOS
+- Windows
+- iOS
+- tvOS
+- watchOS
+- macCatalyst
+- WebAssembly (WASM)
