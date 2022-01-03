@@ -4,7 +4,7 @@
     </a>
     <br>
     <br>
-    C++ Multiplatform Toolkit Template
+    C++ Multiplatform Modular Toolkit Template
     <br>
     Nativium Philosophy: Write Once And Compile Anywhere
     <br>
@@ -24,11 +24,22 @@
 
 ## About
 
-Single code for the business logic with Nativium.
+Write a single code in C++ for the business logic with Nativium and compile for any platform.
 
-Nativium multiplatform toolkit template allows you to use a single code for the business logic of mobile and desktop apps.
+You don't need rewrite your application because the generated binary can be attached to an existing application.
 
-You only need to write platform-specific code where it’s necessary, for example to implement a native UI or when working with platform-specific APIs.
+Supported platforms:
+
+- Linux
+- macOS
+- Windows
+- iOS
+- tvOS
+- watchOS
+- macCatalyst
+- WebAssembly (wasm)
+
+Only need write platform-specific code where it’s necessary .For example, to implement a native user-interface or when working with platform-specific code, like get device battery level.
 
 <p align="center">
     <a href="https://github.com/nativium/nativium" target="_blank" rel="noopener noreferrer">
@@ -36,15 +47,30 @@ You only need to write platform-specific code where it’s necessary, for exampl
     </a>
 </p>
 
+## How it work?
+
+Nativium have two main concepts:
+
+- **modules:** what code and dependencies need be compiled
+- **targets:** how the code will be compiled (each platform is a target)
+
+## What tools was used?
+
+- **python:** to write all scripts (everything work from command line)
+- **cmake:** to organize source code and projects to be compiled
+- **conan:** to compile all C++ dependencies
+
 ## Template
 
-This template aim to let you thinking about your project code instead of it structure and organization.
+This is a template repository that let you start easy and now your own project.
 
-Download this template and check samples to test and see it working on mobile and desktop.
+Think about your code instead of C++ project structure and organization, it is already done with Nativium.
+
+Download this template and check sample apps to test and see it working on mobile, desktop and web.
 
 Every command to setup, prepare, publish and generate final binary can be executed from command line and you can use any editor to work with Nativium.
 
-Each piece of code is separated by modules, making easy extend with your custom code or any C++ code and library.
+Each piece of code is separated by modules, making easy extend with your custom code or any other C++ code and library.
 
 ## Documentation
 
