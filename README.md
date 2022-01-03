@@ -18,6 +18,7 @@
     <a href="https://github.com/nativium/nativium/actions/workflows/windows.yml"><img src="https://github.com/nativium/nativium/actions/workflows/windows.yml/badge.svg"></a>
     <a href="https://github.com/nativium/nativium/actions/workflows/ios.yml"><img src="https://github.com/nativium/nativium/actions/workflows/ios.yml/badge.svg"></a>
     <a href="https://github.com/nativium/nativium/actions/workflows/android.yml"><img src="https://github.com/nativium/nativium/actions/workflows/android.yml/badge.svg"></a>
+    <a href="https://github.com/nativium/nativium/actions/workflows/wasm.yml"><img src="https://github.com/nativium/nativium/actions/workflows/wasm.yml/badge.svg"></a>
     <a href="https://github.com/nativium/nativium/actions/workflows/docs.yml"><img src="https://github.com/nativium/nativium/actions/workflows/docs.yml/badge.svg"></a>
 </p>
 
