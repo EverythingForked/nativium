@@ -271,17 +271,15 @@ def publish(params):
                 target_config["url"],
                 version,
             ),
-            l.BLUE,
+            l.GREEN,
         )
     else:
         l.colored(
             "[DONE] You can access documentation here: {0}/index.html".format(
                 target_config["url"],
             ),
-            l.BLUE,
+            l.GREEN,
         )
-
-    l.ok()
 
 
 # -----------------------------------------------------------------------------

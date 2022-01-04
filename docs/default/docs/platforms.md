@@ -11,4 +11,4 @@ Currently supported platforms:
 - tvOS
 - watchOS
 - macCatalyst
-- WebAssembly (WASM)
+- Web Assembly (WASM)

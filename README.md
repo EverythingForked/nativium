@@ -37,7 +37,7 @@ Supported platforms:
 - tvOS
 - watchOS
 - macCatalyst
-- WebAssembly (WASM)
+- Web Assembly (WASM)
 
 Only need write platform-specific code where it’s necessary .For example, to implement a native user-interface or when working with platform-specific code, like get device battery level.
 
@@ -75,13 +75,13 @@ Each piece of code is separated by modules, making easy extend with your custom 
 
 ## Documentation
 
-You can read all about Nativium in the auto-generated documentation:
+Read all about Nativium in the auto-generated documentation:
 
 [https://nativium.s3.amazonaws.com/docs/index.html](https://nativium.s3.amazonaws.com/docs/index.html)
 
 ## Demo
 
-You can see web assembly (WASM) demo here :
+See Web Assembly (WASM) demo here :
 
 [https://nativium.s3.amazonaws.com/demo/1.0.0/index.html](https://nativium.s3.amazonaws.com/demo/1.0.0/index.html)
 

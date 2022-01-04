@@ -44,5 +44,5 @@ You can see web assembly (WASM) demo here :
 * watchOS: {{ watchos_version }}
 * macCatalyst: {{ maccatalyst_version }}
 * Android: {{ android_version }}
-* WebAssembly (WASM): {{ wasm_version }}
+* Web Assembly (WASM): {{ wasm_version }}
 
