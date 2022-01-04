@@ -57,6 +57,40 @@ def get_all_target_verbs(proj_path, target_name):
 
 
 # -----------------------------------------------------------------------------
+def add_target_prepare_common_args(
+    run_args, target_name, target_config, arch, build_type
+):
+    run_args.append("-s:h")
+    run_args.append("build_type={0}".format(build_type))
+
+    run_args.append("-s:h")
+    run_args.append("arch={0}".format(arch["conan_arch"]))
+
+    run_args.append("-o")
+    run_args.append("nativium_target={0}".format(target_name))
+
+    run_args.append("-o")
+    run_args.append("nativium_arch={0}".format(arch["conan_arch"]))
+
+    run_args.append("-o")
+    run_args.append("nativium_project_name={0}".format(target_config["project_name"]))
+
+    run_args.append("-o")
+    run_args.append(
+        "nativium_product_name={0}".format(
+            target_config["product_name"] if "product_name" in target_config else ""
+        )
+    )
+
+    run_args.append("-o")
+    run_args.append("nativium_version={0}".format(target_config["version"]))
+
+    if "group" in arch:
+        run_args.append("-o"),
+        run_args.append("nativium_group={0}".format(arch["group"]))
+
+
+# -----------------------------------------------------------------------------
 def get_build_profile():
     if p.is_linux():
         return const.PROFILE_BUILD_LINUX

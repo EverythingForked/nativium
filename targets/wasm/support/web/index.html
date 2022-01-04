@@ -7,13 +7,13 @@
     <meta name="viewport"
         content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height" />
 
-    <title>{nativium-name}</title>
+    <title>{nativium-product-name}</title>
 
     <link rel="icon" href="favicon.ico" type="image/x-icon" />
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
 
-    <script src="nativium.js?v={nativium-version}"></script>
+    <script src="{nativium-project-name}.js?v={nativium-version}"></script>
 
     <script>
         // variables
@@ -21,7 +21,7 @@
         let moduleLoaded = false;
         let debugMode = false;
 
-        let Nativium = {};
+        let API = {};
 
         // runtime initialized
         Module.onRuntimeInitialized = async _ => {
@@ -45,8 +45,8 @@
                 // process
                 let resultData = document.getElementById('resultData');
 
-                let version = Nativium.Core.Version();
-                let multiply = Nativium.Core.Multiply(document.getElementById('formValue1').value, document.getElementById('formValue2').value);
+                let version = API.Core.Version();
+                let multiply = API.Core.Multiply(document.getElementById('formValue1').value, document.getElementById('formValue2').value);
 
                 let resultText = "Multiply: " + multiply + " (version " + version + ")";
 
@@ -315,9 +315,9 @@
         }
 
         function initializeLibrary() {
-            Nativium.Core = {};
-            Nativium.Core.Version = Module.cwrap('Nativium_Core_Version', 'string');
-            Nativium.Core.Multiply = Module.cwrap('Nativium_Core_Multiply', 'number', ['number', 'number']);
+            API.Core = {};
+            API.Core.Version = Module.cwrap('Nativium_Core_Version', 'string');
+            API.Core.Multiply = Module.cwrap('Nativium_Core_Multiply', 'number', ['number', 'number']);
         }
 
         function startApp() {
@@ -445,7 +445,7 @@
         <div class="container">
 
             <!-- title -->
-            <h1 id="appTitle" class="title" style="display: none;">{nativium-name}</h1>
+            <h1 id="appTitle" class="title" style="display: none;">{nativium-product-name}</h1>
 
             <div id="appForm" style="display: none;">
                 <!-- value 1 -->

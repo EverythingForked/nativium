@@ -56,21 +56,7 @@ def run(params):
                     "-pr:h",
                     os.path.join(proj_path, "conan", "profiles", arch["conan_profile"]),
                     "-s:h",
-                    "arch={0}".format(arch["conan_arch"]),
-                    "-s:h",
-                    "build_type={0}".format(build_type),
-                    "-s:h",
                     "os.version={0}".format(arch["min_version"]),
-                    "-o",
-                    "nativium_target={0}".format(target_name),
-                    "-o",
-                    "nativium_arch={0}".format(arch["conan_arch"]),
-                    "-o",
-                    "nativium_name={0}".format(target_config["project_name"]),
-                    "-o",
-                    "nativium_version={0}".format(target_config["version"]),
-                    "-o",
-                    "nativium_group={0}".format(arch["group"]),
                     "-o",
                     "darwin-toolchain:enable_bitcode={0}".format(
                         (arch["enable_bitcode"] if "enable_bitcode" in arch else None)
@@ -88,6 +74,10 @@ def run(params):
                         )
                     ),
                 ]
+
+                target.add_target_prepare_common_args(
+                    run_args, target_name, target_config, arch, build_type
+                )
 
                 # extra run args
                 if "build_min_version" in arch:

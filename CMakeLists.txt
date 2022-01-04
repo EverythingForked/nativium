@@ -1,7 +1,7 @@
 # main configurations
 cmake_minimum_required(VERSION 3.20.0)
 
-set(NATIVIUM_NAME
+set(NATIVIUM_PROJECT_NAME
     "nativium"
     CACHE STRING "Project Name"
 )
@@ -40,7 +40,7 @@ get_filename_component(CMAKE_SOURCE_REALPATH "${CMAKE_SOURCE_DIR}" REALPATH)
 set(NATIVIUM_ROOT_PATH ${CMAKE_SOURCE_REALPATH})
 
 # project
-project(${NATIVIUM_NAME})
+project(${NATIVIUM_PROJECT_NAME})
 
 # common
 include(${NATIVIUM_ROOT_PATH}/cmake/common.cmake)

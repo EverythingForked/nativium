@@ -20,7 +20,7 @@ set(CODE_SIGN_IDENTITY
 )
 
 set(FRAMEWORK_NAME
-    "${NATIVIUM_NAME}"
+    "${NATIVIUM_PROJECT_NAME}"
     CACHE STRING "Framework Name"
 )
 
@@ -60,25 +60,25 @@ set(NATIVIUM_FRAMEWORK_LINKS
 )
 
 # c flags
-set(NATIVIUM_CMAKE_C_FLAGS
-    "${NATIVIUM_CMAKE_C_FLAGS} -fobjc-arc -fobjc-abi-version=2"
+set(NATIVIUM_C_FLAGS
+    "${NATIVIUM_C_FLAGS} -fobjc-arc -fobjc-abi-version=2"
     CACHE INTERNAL ""
 )
 
 # cxx flags
-set(NATIVIUM_CMAKE_CXX_FLAGS
-    "${NATIVIUM_CMAKE_CXX_FLAGS} -fobjc-arc -fobjc-abi-version=2 -stdlib=libc++"
+set(NATIVIUM_CXX_FLAGS
+    "${NATIVIUM_CXX_FLAGS} -fobjc-arc -fobjc-abi-version=2 -stdlib=libc++"
     CACHE INTERNAL ""
 )
 
 # flags
 set(CMAKE_C_FLAGS
-    "${CMAKE_C_FLAGS} ${NATIVIUM_CMAKE_C_FLAGS}"
+    "${CMAKE_C_FLAGS} ${NATIVIUM_C_FLAGS}"
     CACHE INTERNAL ""
 )
 
 set(CMAKE_CXX_FLAGS
-    "${CMAKE_CXX_FLAGS} ${NATIVIUM_CMAKE_CXX_FLAGS}"
+    "${CMAKE_CXX_FLAGS} ${NATIVIUM_CXX_FLAGS}"
     CACHE INTERNAL ""
 )
 
@@ -91,14 +91,14 @@ set(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS} ${CMAKE_CXX_FLAGS_RELEASE} -O3")
 include_directories(${NATIVIUM_HEADER_SEARCH_PATHS})
 link_directories(${NATIVIUM_LIBRARY_SEARCH_PATHS})
 
-add_library(${NATIVIUM_NAME} SHARED ${NATIVIUM_SOURCE_FILES_MERGED})
+add_library(${NATIVIUM_PROJECT_NAME} SHARED ${NATIVIUM_SOURCE_FILES_MERGED})
 
-target_link_libraries(${NATIVIUM_NAME} "${NATIVIUM_LIBRARY_LINKS}")
-target_link_libraries(${NATIVIUM_NAME} "${NATIVIUM_FRAMEWORK_LINKS}")
-target_link_libraries(${NATIVIUM_NAME} "${CONAN_LIBS}")
+target_link_libraries(${NATIVIUM_PROJECT_NAME} "${NATIVIUM_LIBRARY_LINKS}")
+target_link_libraries(${NATIVIUM_PROJECT_NAME} "${NATIVIUM_FRAMEWORK_LINKS}")
+target_link_libraries(${NATIVIUM_PROJECT_NAME} "${CONAN_LIBS}")
 
 set_target_properties(
-    ${NATIVIUM_NAME}
+    ${NATIVIUM_PROJECT_NAME}
     PROPERTIES CXX_STANDARD "${NATIVIUM_CXX_STANDARD}"
                CXX_STANDARD_REQUIRED YES
                CXX_EXTENSIONS NO
@@ -121,11 +121,11 @@ set_target_properties(
 )
 
 if(NATIVIUM_GROUP STREQUAL "ios_catalyst")
-    set_target_properties(${NATIVIUM_NAME} PROPERTIES INSTALL_RPATH "@loader_path/../../..")
+    set_target_properties(${NATIVIUM_PROJECT_NAME} PROPERTIES INSTALL_RPATH "@loader_path/../../..")
 else()
-    set_target_properties(${NATIVIUM_NAME} PROPERTIES XCODE_ATTRIBUTE_INSTALL_PATH "@loader_path/Frameworks")
+    set_target_properties(${NATIVIUM_PROJECT_NAME} PROPERTIES XCODE_ATTRIBUTE_INSTALL_PATH "@loader_path/Frameworks")
 endif()
 
-target_compile_options(${NATIVIUM_NAME} PUBLIC "${NATIVIUM_COMPILE_OPTIONS}")
+target_compile_options(${NATIVIUM_PROJECT_NAME} PUBLIC "${NATIVIUM_COMPILE_OPTIONS}")
 
-target_compile_definitions(${NATIVIUM_NAME} PRIVATE NATIVIUM_VERSION="${NATIVIUM_VERSION}" HAS_UNCAUGHT_EXCEPTIONS=0)
+target_compile_definitions(${NATIVIUM_PROJECT_NAME} PRIVATE NATIVIUM_VERSION="${NATIVIUM_VERSION}" HAS_UNCAUGHT_EXCEPTIONS=0)

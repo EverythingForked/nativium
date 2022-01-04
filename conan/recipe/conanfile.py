@@ -19,7 +19,8 @@ class TargetConan(ConanFile):
     options = {
         "shared": [True, False],
         "fPIC": [True, False],
-        "nativium_name": "ANY",
+        "nativium_project_name": "ANY",
+        "nativium_product_name": "ANY",
         "nativium_version": "ANY",
         "nativium_arch": "ANY",
         "nativium_target": "ANY",
@@ -28,7 +29,8 @@ class TargetConan(ConanFile):
     default_options = {
         "shared": False,
         "fPIC": True,
-        "nativium_name": "nativium",
+        "nativium_project_name": "nativium",
+        "nativium_product_name": "nativium",
         "nativium_version": "ANY",
         "nativium_arch": "ANY",
         "nativium_target": "ANY",
@@ -56,13 +58,15 @@ class TargetConan(ConanFile):
 
         # definitions
         cmake.definitions["CMAKE_BUILD_TYPE"] = self.settings.build_type
-        cmake.definitions["NATIVIUM_NAME"] = self.options.get_safe("nativium_name")
-        cmake.definitions["NATIVIUM_VERSION"] = self.options.get_safe(
-            "nativium_version"
-        )
+        cmake.definitions["NATIVIUM_PROJECT_NAME"] = self.options.get_safe("nativium_project_name")
+        cmake.definitions["NATIVIUM_PRODUCT_NAME"] = self.options.get_safe("nativium_product_name")
         cmake.definitions["NATIVIUM_ARCH"] = self.options.get_safe("nativium_arch")
         cmake.definitions["NATIVIUM_GROUP"] = self.options.get_safe("nativium_group")
         cmake.definitions["NATIVIUM_TARGET"] = self.options.get_safe("nativium_target")
+        cmake.definitions["NATIVIUM_BUILD_TYPE"] = self.settings.build_type
+        cmake.definitions["NATIVIUM_VERSION"] = self.options.get_safe(
+            "nativium_version"
+        )
 
         # configure and build
         cmake.configure()

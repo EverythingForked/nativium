@@ -95,7 +95,15 @@ def run(params):
 
                 if f.file_exists(index_file):
                     f.replace_in_file(
-                        index_file, "{nativium-name}", target_config["project_name"]
+                        index_file,
+                        "{nativium-project-name}",
+                        target_config["project_name"],
+                    )
+
+                    f.replace_in_file(
+                        index_file,
+                        "{nativium-product-name}",
+                        target_config["product_name"],
                     )
 
                     f.replace_in_file(

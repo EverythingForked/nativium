@@ -267,7 +267,7 @@ def publish(params):
 
     if append_version:
         l.colored(
-            "[DONE] You can access documentation here: {0}/{1}/index.html".format(
+            "[DONE] You can access the application here: {0}/{1}/index.html".format(
                 target_config["url"],
                 version,
             ),
@@ -275,7 +275,7 @@ def publish(params):
         )
     else:
         l.colored(
-            "[DONE] You can access documentation here: {0}/index.html".format(
+            "[DONE] You can access the application here: {0}/index.html".format(
                 target_config["url"],
             ),
             l.GREEN,

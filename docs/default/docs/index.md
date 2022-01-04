@@ -2,7 +2,7 @@
 
 <p align="center">
     <a href="https://github.com/nativium/nativium" target="_blank" rel="noopener noreferrer">
-        <img width="180" src="https://github.com/nativium/nativium/raw/main/extras/images/logo.png" alt="Nativium Logo">
+        <img width="180" src="images/logo.png" alt="Nativium Logo">
     </a>
     <br>
     <br>
@@ -16,7 +16,7 @@
 
 <p align="center">
     <a href="https://github.com/nativium/nativium" target="_blank" rel="noopener noreferrer">
-        <img src="https://github.com/nativium/nativium/raw/main/extras/images/guide.png" alt="Nativium Guide" style="width: 85%; max-width: 700px;">
+        <img src="images/guide.png" alt="Nativium Guide" style="width: 85%; max-width: 700px;">
     </a>
 </p>
 

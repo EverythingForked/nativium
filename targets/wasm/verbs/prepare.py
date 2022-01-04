@@ -54,21 +54,14 @@ def run(params):
                     build_profile,
                     "-pr:h",
                     os.path.join(proj_path, "conan", "profiles", arch["conan_profile"]),
-                    "-s",
-                    "arch={0}".format(arch["conan_arch"]),
-                    "-s",
-                    "build_type={0}".format(build_type),
-                    "-o",
-                    "nativium_target={0}".format(target_name),
-                    "-o",
-                    "nativium_arch={0}".format(arch["conan_arch"]),
-                    "-o",
-                    "nativium_name={0}".format(target_config["project_name"]),
-                    "-o",
-                    "nativium_version={0}".format(target_config["version"]),
-                    "--build=missing",
-                    "--update",
                 ]
+
+                target.add_target_prepare_common_args(
+                    run_args, target_name, target_config, arch, build_type
+                )
+
+                run_args.append("--build=missing")
+                run_args.append("--update")
 
                 r.run(run_args, build_dir)
 

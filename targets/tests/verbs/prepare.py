@@ -5,7 +5,7 @@ from pygemstones.system import platform as p
 from pygemstones.system import runner as r
 from pygemstones.util import log as l
 
-from core import const
+from core import const, target
 from targets.tests.config import target as config
 
 
@@ -35,6 +35,13 @@ def run(params):
 
                 f.recreate_dir(build_dir)
 
+                build_profile = target.get_build_profile()
+
+                if build_profile != "default":
+                    build_profile = os.path.join(
+                        proj_path, "conan", "profiles", build_profile
+                    )
+
                 # main run args
                 run_args = [
                     "conan",
@@ -45,28 +52,15 @@ def run(params):
                         "recipe",
                         const.FILE_NAME_CONANFILE_PY,
                     ),
-                    "--profile",
+                    "-pr:b",
+                    build_profile,
+                    "-pr:h",
                     os.path.join(proj_path, "conan", "profiles", arch["conan_profile"]),
-                    "-s",
-                    "arch={0}".format(arch["conan_arch"]),
-                    "-s",
-                    "build_type={0}".format(build_type),
-                    "-o",
-                    "nativium_target={0}".format(target_name),
-                    "-o",
-                    "nativium_name={0}".format(target_config["project_name"]),
-                    "-o",
-                    "nativium_arch={0}".format(arch["conan_arch"]),
-                    "-o",
-                    "nativium_version={0}".format(target_config["version"]),
-                    "-o",
-                    "nativium_target={0}".format(target_name),
                 ]
 
-                # extra run args
-                if "group" in arch:
-                    run_args.append("-o"),
-                    run_args.append("nativium_group={0}".format(arch["group"]))
+                target.add_target_prepare_common_args(
+                    run_args, target_name, target_config, arch, build_type
+                )
 
                 if p.is_macos():
                     run_args.append("-s"),
