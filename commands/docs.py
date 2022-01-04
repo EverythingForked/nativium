@@ -147,7 +147,7 @@ def docs_publish(params):
         aws_key_id = os.getenv(const.AWS_KEY_ID_ENV)
         aws_secret_key = os.getenv(const.AWS_SECRET_KEY_ENV)
         aws_bucket_name = config_data["bucket_name"]
-        aws_bucket_path = "{0}".format(config_data["bucket_path"])
+        aws_bucket_path = config_data["bucket_path"]
 
         if append_version:
             aws_bucket_path = "{0}/{1}".format(aws_bucket_path, version)
@@ -180,7 +180,7 @@ def docs_publish(params):
         l.i("Initializing AWS bucket and SDK...")
 
         if not aws_key_id or not aws_secret_key:
-            l.failed("Your AWS credentials are invalid")
+            l.e("Your AWS credentials are invalid")
 
         s3_client = boto3.client(
             service_name="s3",

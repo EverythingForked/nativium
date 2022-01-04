@@ -81,13 +81,9 @@ You can read all about Nativium in the auto-generated documentation:
 
 ## Demo
 
-The Android sample can be downloaded here:
+You can see web assembly (WASM) demo here :
 
-[https://play.google.com/store/apps/details?id=com.nativium.sample](https://play.google.com/store/apps/details?id=com.nativium.sample)
-
-The iOS (also watchOS and macOS) sample can be downloaded here:
-
-[https://apps.apple.com/br/app/nativium-c-tasks/id1492446109](https://apps.apple.com/br/app/nativium-c-tasks/id1492446109)
+[https://nativium.s3.amazonaws.com/demo/1.0.0/index.html](https://nativium.s3.amazonaws.com/demo/1.0.0/index.html)
 
 ## Buy me a coffee
 

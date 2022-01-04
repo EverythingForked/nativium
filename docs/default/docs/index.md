@@ -30,13 +30,9 @@ You can download Nativium source here:
 
 ## Demo
 
-The Android sample can be downloaded here:
+You can see web assembly (WASM) demo here :
 
-[https://play.google.com/store/apps/details?id=com.ezored.sample](https://play.google.com/store/apps/details?id=com.ezored.sample)
-
-The iOS (also watchOS and macOS) sample can be downloaded here:
-
-[https://apps.apple.com/br/app/ezored-c-tasks/id1492446109](https://apps.apple.com/br/app/ezored-c-tasks/id1492446109)
+[https://nativium.s3.amazonaws.com/demo/1.0.0/index.html](https://nativium.s3.amazonaws.com/demo/1.0.0/index.html)
 
 ## Versions
 
